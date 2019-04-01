@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/../comun/config.php';
+require_once __DIR__.'/includes/comun/config.php';
 ?>
 <!DOCTYPE html>
 <html>
