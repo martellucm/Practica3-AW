@@ -9,15 +9,15 @@
 			echo "Bienvenido, " . $_SESSION['nombre'] . "";
 			?>
 			</p>
-			<a href='includes/usuarios/miBoqueron.php'>Mi boquerón</a>
-			<a href='includes/sesion/logout.php'>(salir)</a>
+			<a href='../usuarios/miBoqueron.php'>Mi boquerón</a>
+			<a href='logout.php'>(salir)</a>
 			
 		
 		<?php
 
 		} else {
 			echo "<a href='includes/usuarios/registro.php'>Registro</a>";
-			echo "<a href='includes/sesion/login.php'>Login</a>";
+			echo "<a href='login.php'>Login</a>";
 		}
 		?>
 	</div>
@@ -25,7 +25,7 @@
 		<ul>
 			<li><a href='index.php'>Home</a></li>
 			<li><a href='prodtabla.php'>Productos</a></li>
-			<li><a href='includes/estructura/none_page.php'>Torneos</a></li>
+			<li><a href='../estructura/none_page.php'>Torneos</a></li>
 			<li><a href='includes/estructura/none_page.php'>About us</a></li>
 			<li><a href='includes/estructura/none_page.php'>Foro</a></li>
 			<?php
