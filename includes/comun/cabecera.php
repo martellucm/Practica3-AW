@@ -31,7 +31,7 @@
 			<?php
 			if(isset($_SESSION['esAdmin']) && $_SESSION['esAdmin'] == true){
 			?>
-			<li><a href='includes/usuarios/userTabla.php'>G.Usuarios</a></li>
+			<li><a href='userTabla.php'>G.Usuarios</a></li>
 			<?php }?>
 		</ul>
 	</div>
