@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/comun/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -13,7 +13,7 @@ require_once __DIR__.'/includes/config.php';
   	<div id = "contenido">
 	    <?php require'includes/comun/cabecera.php'?>
 	    <div id = "news">
-	       <?php require'leftnews.php'?>
+	       <?php require'includes/estructura/leftnews.php'?>
 	    </div>
 	    <div id = "publi">
         <img class="foto_publi" src="img/publi.jpg" width="784" height="200">
@@ -21,7 +21,7 @@ require_once __DIR__.'/includes/config.php';
 	   	<div id = "month">
         <h2>Ganador del MES</h2>
 	    <?php
-        require_once __DIR__.'/includes/GestionaUsuario.php';
+        require_once __DIR__.'/includes/usuarios/GestionaUsuario.php';
            GestionUsuario::mostrarWW();
 	      ?>
         </div>
@@ -33,7 +33,7 @@ require_once __DIR__.'/includes/config.php';
 		</div>
     <div class = "productos">
         <?php
-          require_once __DIR__.'/includes/GestionProducto.php';GestionProducto::mejoresProductos('3');
+          require_once __DIR__.'/includes/productos/GestionProducto.php';GestionProducto::mejoresProductos('3');
         ?>
     </div>
 	</div>
