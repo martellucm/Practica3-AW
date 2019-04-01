@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/comun/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,7 +14,7 @@ require_once __DIR__.'/includes/config.php';
 	    <?php require'includes/comun/cabecera.php'?>
       <div class="productos">
           <?php
-            require_once __DIR__.'/includes/GestionaUsuario.php';
+            require_once __DIR__.'/includes/usuarios/GestionaUsuario.php';
              GestionUsuario::listadoUsuario();
           ?>
       </div>

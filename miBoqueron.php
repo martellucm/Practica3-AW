@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__.'/includes/config.php';
-require_once __DIR__.'/includes/Usuario.php';
+require_once __DIR__.'/includes/comun/config.php';
+require_once __DIR__.'/includes/usuarios/Usuario.php';
 ?>
 <!DOCTYPE HTML>
 <html lang="es">
