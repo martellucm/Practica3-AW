@@ -60,10 +60,10 @@ class GestionProducto{
           $directorio = 'img/products/'.$row['id'].'.jpg';
 
           if(@file_get_contents($directorio) == null){
-              echo '<div class ="products"><a href="productos.php?id='.$row['id'].'"<div id = "img_total"><img src="img/products/default.jpg"/></a>';
+              echo '<div class ="products"><a href="includes/productos/productos.php?id='.$row['id'].'"<div id = "img_total"><img src="img/products/default.jpg"/></a>';
           }
           else{
-              echo '<div class ="products"><a href="productos.php?id='.$row['id'].'"<div id = "img_total"><img src='.$directorio.'></a>';
+              echo '<div class ="products"><a href="includes/productos/productos.php?id='.$row['id'].'"<div id = "img_total"><img src='.$directorio.'></a>';
           }    
 
          
@@ -73,7 +73,7 @@ class GestionProducto{
            <div class ="eliminar_prod">
            <?php
            if(isset($_SESSION['esAdmin']) && $_SESSION['esAdmin'] == true){
-             echo   '<form action = "EliminarProducto.php?id='.$row['id'].'"method="POST"> <input type="submit" value="Eliminar">
+             echo   '<form action = "includes/productos/EliminarProducto.php?id='.$row['id'].'"method="POST"> <input type="submit" value="Eliminar">
               </form>';
            }
            ?>

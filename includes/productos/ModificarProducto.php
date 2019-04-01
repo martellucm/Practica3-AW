@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/comun/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@ require_once __DIR__.'/includes/config.php';
 
 <?php
 	require("includes/comun/cabecera.php");
-	require("includes/ModProducto.php");
+	require("includes/productos/ModProducto.php");
 ?>
 
 
