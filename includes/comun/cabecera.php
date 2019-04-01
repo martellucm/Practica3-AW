@@ -9,7 +9,7 @@
 			echo "Bienvenido, " . $_SESSION['nombre'] . "";
 			?>
 			</p>
-			<a href='../usuarios/miBoqueron.php'>Mi boquerón</a>
+			<a href='miBoqueron.php'>Mi boquerón</a>
 			<a href='logout.php'>(salir)</a>
 			
 		
