@@ -60,10 +60,10 @@ class GestionProducto{
           $directorio = 'img/products/'.$row['id'].'.jpg';
 
           if(@file_get_contents($directorio) == null){
-              echo '<div class ="products"><a href="includes/productos/productos.php?id='.$row['id'].'"<div id = "img_total"><img src="img/products/default.jpg"/></a>';
+              echo '<div class ="products"><a href="productos.php?id='.$row['id'].'"<div id = "img_total"><img src="img/products/default.jpg"/></a>';
           }
           else{
-              echo '<div class ="products"><a href="includes/productos/productos.php?id='.$row['id'].'"<div id = "img_total"><img src='.$directorio.'></a>';
+              echo '<div class ="products"><a href="productos.php?id='.$row['id'].'"<div id = "img_total"><img src='.$directorio.'></a>';
           }    
 
          

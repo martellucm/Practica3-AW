@@ -14,7 +14,7 @@ require_once __DIR__.'/includes/comun/config.php';
 	    <?php require'includes/comun/cabecera.php'?>
 	    <div id = "news">
 
-	       <?php require'leftnews.php'?>
+	       <?php require'includes/estructura/leftnews.php'?>
 	    </div>
       <div id = "reacciones">
            <?php 

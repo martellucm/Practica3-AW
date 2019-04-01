@@ -1,6 +1,6 @@
 
  <?php
-  require_once __DIR__ . '/comun/config.php';
+  require_once __DIR__ . '/../comun/config.php';
  class Valoracion{
 	 public static function setPuntuacion($id){
 	 	if (!isset($_SESSION['login'])) {
