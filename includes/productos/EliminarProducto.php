@@ -1,6 +1,6 @@
  <?php
- 	require_once __DIR__.'/includes/config.php';
-    require_once __DIR__.'/includes/Producto.php';
+ 	require_once __DIR__.'/includes/comun/config.php';
+    require_once __DIR__.'/includes/productos/Producto.php';
  ?>
 
  <div>
@@ -8,6 +8,6 @@
  	 
      $id = $_GET['id'];
      Product::eliminaProducto($id);
-     Header("Location: prodtabla.php");
+     Header("Location: includes/productos/prodtabla.php");
 ?>
 </div>

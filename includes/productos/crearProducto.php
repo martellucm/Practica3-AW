@@ -15,7 +15,7 @@ require_once __DIR__.'/includes/config.php';
 
 <?php
 	require("includes/comun/cabecera.php");
-	require("includes/RegistroProducto.php");
+	require("includes/productos/RegistroProducto.php");
 ?>
 
 
