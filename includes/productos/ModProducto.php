@@ -1,7 +1,7 @@
  <?php
-	require_once __DIR__.'/comun/config.php';
-	require_once __DIR__.'/comun/Form.php';
-	require_once __DIR__.'/productos/Producto.php';
+	require_once __DIR__.'/../comun/config.php';
+	require_once __DIR__.'/../comun/Form.php';
+	require_once __DIR__.'/Producto.php';
 
 class ModifProducto extends Form {
 
@@ -9,7 +9,7 @@ class ModifProducto extends Form {
 	protected function procesaFormulario($datos){
 			$id3 = $datos['_id'];
 			if (! isset($_POST['modificarprod']) ) {
-				header('Location: includes/productos/productos.php?id='.$id3);
+				header('Location: productos.php?id='.$id3);
 				exit();
 			}
 
@@ -49,7 +49,7 @@ class ModifProducto extends Form {
 			if (count($erroresFormulario) === 0) {
 				
 				Product::actualizaProduct($id3, $nombreProducto, $descrip, $edad, $jugadores, $link, $empresa);
-				return 'includes/productos/productos.php?id='.$id3.'';			}
+				return 'productos.php?id='.$id3.'';			}
 
 			return $erroresFormulario;
 		}

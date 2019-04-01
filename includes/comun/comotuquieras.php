@@ -1,6 +1,6 @@
 <?php
 
-	$dir_subida = 'img/' . $_GET['where'] . '/';
+	$dir_subida = '../../img/' . $_GET['where'] . '/';
 	$new_name = $_GET['id'];
 	
 	if(isset($_POST['submit'])){
@@ -28,7 +28,7 @@
 					if ($_GET['where'] == "users"){
 						header("Location: includes/usuarios/miBoqueron.php");
 					}else{
-						header("Location: includes/productos/productos.php?id=".$new_name);
+						header("Location: ../../productos.php?id=".$new_name);
 					}
 				}
 				else{

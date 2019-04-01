@@ -19,7 +19,7 @@
 
 		if(isset($_SESSION['esAdmin']) && $_SESSION['esAdmin'] == true){
            	echo '<div id = "admin">';
-             echo '<a href="includes/productos/ModificarProducto.php?id='.$id.'"> Modificar </a>';
+             echo '<a href="ModificarProducto.php?id='.$id.'"> Modificar </a>';
          	echo '<form action="includes/comun/comotuquieras.php?id='.$id.'&where=products" method="POST" enctype="multipart/form-data">';
 			echo '<input type="file" name="file">';
 			echo '<button type="submit" name="submit"> Actualizar foto</button>';
