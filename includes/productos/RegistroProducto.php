@@ -1,14 +1,14 @@
 <?php
-	require_once __DIR__.'/comun/config.php';
-	require_once __DIR__.'/comun/Form.php';
-	require_once __DIR__.'/productos/Producto.php';
+	require_once __DIR__.'/../comun/config.php';
+	require_once __DIR__.'/../comun/Form.php';
+	require_once __DIR__.'/Producto.php';
 
 class RegistroProducto extends Form {
 
 
 	protected function procesaFormulario($datos){
 			if (! isset($_POST['registro']) ) {
-				header('Location: usuarios/registro.php');
+				header('Location: includes/usuarios/registro.php');
 				exit();
 			}
 
@@ -51,7 +51,7 @@ class RegistroProducto extends Form {
 				if (! $producto ) {
 					$erroresFormulario[] = "El producto ya existe";
 				} else {
-					return 'productos/prodtabla.php';
+					return 'prodtabla.php';
 				}
 			}
 

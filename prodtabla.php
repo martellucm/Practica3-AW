@@ -20,7 +20,7 @@ require_once __DIR__.'/includes/comun/config.php';
       <?php
         if(isset($_SESSION['esAdmin']) && $_SESSION['esAdmin'] == true){
           ?>
-          <a href="/includes/productos/crearProducto.php">Añadir </a>
+          <a href="crearProducto.php">Añadir </a>
           <?php
         }
         ?>
