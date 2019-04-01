@@ -9,29 +9,29 @@
 			echo "Bienvenido, " . $_SESSION['nombre'] . "";
 			?>
 			</p>
-			<a href='miBoqueron.php'>Mi boquerón</a>
-			<a href='logout.php'>(salir)</a>
+			<a href='includes/usuarios/miBoqueron.php'>Mi boquerón</a>
+			<a href='includes/sesion/logout.php'>(salir)</a>
 			
 		
 		<?php
 
 		} else {
-			echo "<a href='registro.php'>Registro</a>";
-			echo "<a href='login.php'>Login</a>";
+			echo "<a href='includes/usuarios/registro.php'>Registro</a>";
+			echo "<a href='includes/sesion/login.php'>Login</a>";
 		}
 		?>
 	</div>
 	<div class="navMenu">
 		<ul>
 			<li><a href='index.php'>Home</a></li>
-			<li><a href='prodtabla.php'>Productos</a></li>
-			<li><a href='none_page.php'>Torneos</a></li>
-			<li><a href='none_page.php'>About us</a></li>
-			<li><a href='none_page.php'>Foro</a></li>
+			<li><a href='includes/productos/prodtabla.php'>Productos</a></li>
+			<li><a href='includes/estructura/none_page.php'>Torneos</a></li>
+			<li><a href='includes/estructura/none_page.php'>About us</a></li>
+			<li><a href='includes/estructura/none_page.php'>Foro</a></li>
 			<?php
 			if(isset($_SESSION['esAdmin']) && $_SESSION['esAdmin'] == true){
 			?>
-			<li><a href='userTabla.php'>G.Usuarios</a></li>
+			<li><a href='includes/usuarios/userTabla.php'>G.Usuarios</a></li>
 			<?php }?>
 		</ul>
 	</div>
