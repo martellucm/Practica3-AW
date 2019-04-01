@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/comun/config.php';
 
 //Doble seguridad: unset + destroy
 unset($_SESSION["login"]);
