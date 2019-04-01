@@ -51,7 +51,7 @@ require_once __DIR__.'/includes/usuarios/Usuario.php';
 				echo '<div id = "admin">';
 				echo '<a href="ModUsuario.php?id='.$id.'"> Modificar </a>';
 
-				echo '<form action="comotuquieras.php?id='.$id.'&where=users" method="POST" enctype="multipart/form-data">';
+				echo '<form action="includes/comun/comotuquieras.php?id='.$id.'&where=users" method="POST" enctype="multipart/form-data">';
 				echo '<input type="file" name="file">';
 				echo '<button type="submit" name="submit"> Actualizar foto</button>';
 				echo '</div>';

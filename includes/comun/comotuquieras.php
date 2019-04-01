@@ -26,7 +26,7 @@
 					//$fileDestination = 'img/users/2.jpg';
 					move_uploaded_file($fileTmpName, $fileDestination);
 					if ($_GET['where'] == "users"){
-						header("Location: includes/usuarios/miBoqueron.php");
+						header("Location: ../../miBoqueron.php");
 					}else{
 						header("Location: ../../productos.php?id=".$new_name);
 					}
