@@ -38,7 +38,7 @@ class GestionProducto{
         public static function getMaxProd(){
            $app = Aplicacion::getSingleton();
            $conn = $app->conexionBd();
-           $query = sprintf("SELECT id FROM producto WHERE puntos > 6 ORDER BY puntos DESC");
+           $query = sprintf("SELECT id FROM producto WHERE puntos > 6 ORDER BY puntos DESC LIMIT 3");
            $rs = $conn->query($query);
            $result = false;
            if ($rs) {

@@ -15,13 +15,13 @@ require_once __DIR__.'/includes/comun/config.php';
       <div class="tabla">
       <?php
          require_once __DIR__.'/includes/Torneos/results.php';
-         MostrarResults::getPodium(16);
+         MostrarResults::getResults(16);
         ?>
       </div>
       <div class="podium">
          <?php
          require_once __DIR__.'/includes/Torneos/results.php';
-         MostrarResults::getPodium(3);
+         MostrarResults::getResults(3);
         ?>
       </div>
 	 </div>
