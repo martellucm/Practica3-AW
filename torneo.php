@@ -15,7 +15,7 @@ require_once __DIR__.'/includes/comun/config.php';
   	<h1>Torneos</h1>
 	<div id="bttn_tour">
 		<a href=""><button >Ver Torneo</button></a>
-		<a href=""><button >Resultados</button></a>
+		<a href="mostrarResults.php"><button >Resultados</button></a>
 	</div>
 	<?php
 	 require 'includes/Torneos/torn_disp.php';
