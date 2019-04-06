@@ -15,17 +15,19 @@ require_once __DIR__ .'/../productos/Producto.php';
 		$query = sprintf("SELECT * FROM torneo_jugando t WHERE t.ronda = '%s'", $conn->real_escape_string("clasificacion"));
         $rs = $conn->query($query);
 		
-		
-		$data = $rs->fetch_assoc();
-		foreach($data as $cursor){
-			$idprod = @$cursor["idJuego"];
-			$fecha = @$cursor["dia_jugado"];
+		while($row = mysqli_fetch_assoc($rs)){
+			$rows[] = $row;
+		}
+		for($i = 0; $i < count($rows); $i++){
+			$idprod = @$rows['i']["idJuego"];
+			$fecha = @$rows['i']["dia_jugado"];
 			$producto = Product::buscaProduco($idprod);
 			echo "<tr>";
 			echo "<td>" . $producto->nombreProd() . "</td>";
 			echo "<td>" . $fecha . "</td>";
 			echo "</tr>";
-	}	
+		}	
+		
 		?>		
 	</table>
 </div>
