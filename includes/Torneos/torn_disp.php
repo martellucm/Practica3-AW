@@ -21,11 +21,11 @@ require_once __DIR__ .'/../usuarios/Usuario.php';
 			$rows[] = $row;
 		}
 		for($i = 0; $i < count($rows); $i++){
-			$idprod = @$rows['i']["idJuego"];
-			$idUsu = @$rows['i']["id_jugad_jugan"];
-			$fecha = @$rows['i']["dia_jugado"];
+			$idprod = $rows[$i]["idJuego"];
+			$idUsu = $rows[$i]["id_jugad_jugan"];
+			$fecha = $rows[$i]["dia_jugado"];
 			$producto = Product::buscaProduco($idprod);
-			$usuario = Usuario::buscaUsuario($idUsu);
+			$usuario = Usuario::buscaUsuarioID($idUsu);
 			echo "<tr>";
 			echo "<td>" . $producto->nombreProd() . "</td>";
 			echo "<td>" . $usuario->nombreUsuario() . "</td>";
