@@ -130,6 +130,12 @@
 	        return $jug;
 	    }
 
+	    public static function generaRandom(){
+	    	/*
+				usando function y un método que te devuelve cuántos paquetes hay (posible recursión)
+	    	*/
+	    }//Genera un número random entre todos los productos y devuelve uno
+
 	    public static function eliminarInscrip($id)
 	    {
 	    	/*
