@@ -28,7 +28,7 @@ require_once __DIR__ .'/../usuarios/Usuario.php';
 			$usuario = Usuario::buscaUsuario($idUsu);
 			echo "<tr>";
 			echo "<td>" . $producto->nombreProd() . "</td>";
-			echo "<td>" . $usuario->nombre() . "</td>";
+			echo "<td>" . $usuario->nombreUsuario() . "</td>";
 			echo "<td>" . $fecha . "</td>";
 			echo "</tr>";
 		}	
