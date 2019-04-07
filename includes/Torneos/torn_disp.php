@@ -22,7 +22,7 @@ require_once __DIR__ .'/../usuarios/Usuario.php';
 		}
 		for($i = 0; $i < count($rows); $i++){
 			$idprod = @$rows['i']["idJuego"];
-			$idUsu = @rows['i']["id_jugad_jugan"];
+			$idUsu = @$rows['i']["id_jugad_jugan"];
 			$fecha = @$rows['i']["dia_jugado"];
 			$producto = Product::buscaProduco($idprod);
 			$usuario = Usuario::buscaUsuario($idUsu);
