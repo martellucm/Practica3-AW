@@ -104,7 +104,7 @@
 	        if ($inscri) {
 	            return false;
 	        }
-	        $inscri = new Inscristo($idUsuario, $idJuego, $jug_tot, $esViernes, $esMensual, $dia_jugado, $puntos, $ronda);
+	        $inscri = new Inscristo($idUsuario, $idJuego, $jug_tot, $esViernes, $esMensual, $dia_jugado, 2, 'clasificacion');
 	        return self::inserta($inscri);
 	    }
 
