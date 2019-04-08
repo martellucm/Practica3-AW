@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-03-2019 a las 20:08:52
+-- Tiempo de generación: 08-04-2019 a las 12:29:00
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -38,6 +38,18 @@ CREATE TABLE `comentario` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `noticia`
+--
+
+CREATE TABLE `noticia` (
+  `id` int(11) NOT NULL,
+  `titular` varchar(40) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `cuerpo` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `producto`
 --
 
@@ -59,9 +71,9 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`id`, `nombreProd`, `puntos`, `descript`, `edad`, `jugadores`, `link`, `empresa`, `num_votaciones`) VALUES
 (0, 'carnival zombie', 8, '\r\nLos manuscritos antiguos hablan de un Leviatán, una enorme criatura que yace en el lecho de la laguna en la parte posterior de la cual la ciudad tiene sus cimientos. Todos los manuscritos coinciden en su sueño eterno y todos dicen que la bestia se despertará un día, sacudiendo la ciudad de sus raíces embarradas, rompiendo los pilotes vitrificados sobre los cuales se encuentra la ciudad, y estrellándola contra el mar hirviente donde el monstruo se levantará . ', 12, 4, 'https://www.google.com', 'Zombies SA', 7),
-(1, 'TeotiHuacan City Of Gods', 5, '\r\nEn Teotihuacan: Ciudad de los Dioses, cada jugador controla una fuerza de dados de trabajadores, que crecen en fuerza con cada movimiento. En su turno, mueve a un trabajador alrededor de una tabla modular, siempre eligiendo una de las dos áreas del mosaico de ubicación en el que se encuentra: una que le ofrece una acción (y una mejora de trabajador), la otra que le proporciona una bonificación poderosa (pero sin una actualización).', 6, 4, 'https://www.tuenti.com', 'Tuenti SA', 6),
+(1, 'TeotiHuacan City Of Gods', 7, '\r\nEn Teotihuacan: Ciudad de los Dioses, cada jugador controla una fuerza de dados de trabajadores, que crecen en fuerza con cada movimiento. En su turno, mueve a un trabajador alrededor de una tabla modular, siempre eligiendo una de las dos áreas del mosaico de ubicación en el que se encuentra: una que le ofrece una acción (y una mejora de trabajador), la otra que le proporciona una bonificación poderosa (pero sin una actualización).', 6, 4, 'https://www.tuenti.com', 'Tuenti SA', 11),
 (2, 'root', 0, 'La infame Marquesa de Gato se ha apoderado del gran bosque, con la intención de cosechar sus riquezas. Bajo su gobierno, las muchas criaturas del bosque se han unido. Esta Alianza buscará fortalecer sus recursos y subvertir la regla de los Gatos. En este esfuerzo, la Alianza puede contar con la ayuda de los vagabundos errantes que pueden moverse a través de los caminos más peligrosos del bosque.', 5, 6, 'https://www.amazon.com/', 'Amazon SA', 0),
-(3, 'lolita lola', 6, 'loaskjdlsajdls slkasjdlaskdjlask', 3, 5, 'https://www.a.com', 'MyChuster SA', 1);
+(3, 'lolita lola', 6, 'Este es otro producto que sirve como prueba', 3, 5, 'https://www.a.com', 'MyChuster SA', 1);
 
 -- --------------------------------------------------------
 
@@ -78,6 +90,18 @@ CREATE TABLE `torneo` (
   `dia_ganado` date NOT NULL,
   `esMensual` tinyint(1) NOT NULL DEFAULT '0',
   `esViernes` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `torneos_disp`
+--
+
+CREATE TABLE `torneos_disp` (
+  `id` int(11) NOT NULL,
+  `idJuego` int(11) NOT NULL,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -125,7 +149,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombreUsuario`, `nombre`, `password`, `email`, `ptosForum`, `ptosProd`, `ptosTourn`, `avatar`, `rol`, `descrip`, `cumple`) VALUES
 (1, 'Chuster', 'Chuster Garcia', '$2y$10$.iJf.qUonY.Im9nM419W6eKWw0.q43ChW7maLJ3J/turPzzctyZ8O', 'chuster@gmail.com', 0, 0, 20, '', 'admin', 'Soy una persona meramente interesante', '1995-05-23'),
-(2, 'Lolito', 'Lolito Lopez', '$2y$10$.iJf.qUonY.Im9nM419W6eKWw0.q43ChW7maLJ3J/turPzzctyZ8O', 'lolito@gmail.com', 0, 0, 21, '', 'user', 'asdkasjd lasjk lk jasdlkjas dlj dlkjasldjk aldkjas dlkasj dlkasj dlakjd laskjd lsakjdsalkdjsadjhfjkhas kljasd ', '2016-11-15');
+(2, 'Lolito', 'Lolito Lopez', '$2y$10$.iJf.qUonY.Im9nM419W6eKWw0.q43ChW7maLJ3J/turPzzctyZ8O', 'lolito@gmail.com', 0, 0, 21, '', 'user', 'asdkasjd lasjk lk jasdlkjas dlj dlkjasldjk aldkjas dlkasj dlkasj dlakjd laskjd lsakjdsalkdjsadjhfjkhas kljasd ', '2016-11-15'),
+(3, 'Usuario2', 'Segundo Usuario', '$2y$10$muGrjmdpdTFlSeIX1QdTq.y0ufF8PhSLn56VgJGAxKPNu5gDWnT2a', 'user_dos@gmail.com', 0, 0, 0, 'noob', 'user', 'Es un usuario de prueba para tener en cuenta', '1995-05-23');
 
 --
 -- Índices para tablas volcadas
@@ -138,6 +163,12 @@ ALTER TABLE `comentario`
   ADD PRIMARY KEY (`id`),
   ADD KEY `comentario_FK1` (`idProd`),
   ADD KEY `comentario_FK2` (`idUsuario`);
+
+--
+-- Indices de la tabla `noticia`
+--
+ALTER TABLE `noticia`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `producto`
@@ -180,6 +211,12 @@ ALTER TABLE `comentario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `noticia`
+--
+ALTER TABLE `noticia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
@@ -201,7 +238,7 @@ ALTER TABLE `torneo_jugando`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
