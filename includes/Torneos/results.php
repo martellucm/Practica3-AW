@@ -6,8 +6,7 @@
      require_once __DIR__.'/../productos/GestionProducto.php';
      require_once __DIR__.'/GestionaTorneo.php';
 
-
-static class MostrarResults{
+  class MostrarResults{
 
    public static function getPodiumPlayers(){
          $app = Aplicacion::getSingleton();
@@ -65,19 +64,20 @@ static class MostrarResults{
         		 echo '<tr> 
          			<th>Nombre</th>
    					<th>Torneo Ganado</th>
+            <th>Fecha</th>
    					</tr>';
          }
          else{
-         	$ganador = GestionaTorneo::getPodiumPlayers();
+         	$ganador = self::getPodiumPlayers();
          }
          $i = 0;
          if(is_array($ganador)){
           foreach ($ganador as &$row) {
           	if ($n === 3){
-            	MostrarResults::mostrarPodium($row);
+            	self::mostrarPodium($row);
         	}
         	else{
-        	   	MostrarResults::mostrarTabla($row);
+        	   	self::mostrarTabla($row);
         	}
             $i++;
             if ($i >= $n){
@@ -100,6 +100,7 @@ static class MostrarResults{
    		 echo '<tr> 
          		<th>'.$user->nombreUsuario().'</th>
    				<th>'.$prod->nombreProd().'</th>
+          <th>'.$row['dia_ganado'].'</th>
    				</tr>';
 
          //echo '</table>';

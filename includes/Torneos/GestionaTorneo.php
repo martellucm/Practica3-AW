@@ -1,10 +1,14 @@
 <?php
 class GestionaTorneo{
 
+	public static function crearTorneo(){
+		
+	}
+
     public static function getTopPlayers(){
 	       $app = Aplicacion::getSingleton();
 	       $conn = $app->conexionBd();
-	       $query = sprintf("SELECT idUsuario, Puntuacion, idJuego FROM torneo  WHERE Puntuacion > 1 ORDER BY Puntuacion DESC");
+	       $query = sprintf("SELECT * FROM torneo  WHERE Puntuacion > 1 ORDER BY Puntuacion DESC");
 	       $rs = $conn->query($query);
 	       $result = false;
 	       if ($rs) {
