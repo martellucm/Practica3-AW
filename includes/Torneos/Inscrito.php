@@ -1,5 +1,6 @@
-<?php 
+<?php
 	require_once __DIR__ . '/../comun/Aplicacion.php';
+	require_once __DIR__. '/../productos/Producto.php';
 
 	class Inscristo{
 
@@ -35,7 +36,7 @@
 		public function id(){
 			return $this->id;
 		}
-			
+
 		public function idUsuario(){
 			return $this->idUsuario;
 		}
@@ -81,8 +82,8 @@
 	            if ( $rs->num_rows == 1) {
 	                $fila = $rs->fetch_assoc();
 	                //	construct($idUsuario, $idJuego, $jug_tot, $esViernes, $esMensual, $dia_jugado, $puntos, $ronda)
-	                $inscri = new Inscristo($fila['id_jugad_jugan'], $fila['idJuego'], $fila['jugadores_total'], 
-	                					$fila['esViernes'], $fila['esMensual'], $fila['dia_jugado'], 
+	                $inscri = new Inscristo($fila['id_jugad_jugan'], $fila['idJuego'], $fila['jugadores_total'],
+	                					$fila['esViernes'], $fila['esMensual'], $fila['dia_jugado'],
 	                					$fila['puntos'], $fila['ronda']);
 	                $inscri->id = $fila['id'];
 	                $result = $inscri;
@@ -131,19 +132,24 @@
 	    }
 
 	    public static function generaRandom(){
-	    	/*
-				usando function y un método que te devuelve cuántos paquetes hay (posible recursión)
-	    	*/
-	    }//Genera un número random entre todos los productos y devuelve uno
+				$prod = NULL;
+				$intMax = Product::getLastID();
+				$id = rand(0, $intMax);
+				$prod = Product::buscaProduco($id);
+				if($prod === NULL){
+					$prod = generaRandom();
+				}
+				return $prod;
+	    }//Genera un número random entre todos los productos y devuelve uno si existe, si no vuelve a buscar
 
-	    public static function eliminarInscrip($id)
+	    public static function eliminarInscrip($id, $fecha)
 	    {
-	    	/*
 	        $app = Aplicacion::getSingleton();
 	        $conn = $app->conexionBd();
-	        $query = sprintf("DELETE FROM usuarios WHERE id = '%s'", $conn->real_escape_string($id));
+	        $query = sprintf("DELETE FROM torneo_jugando WHERE id_jugad_jugan = '%s' AND dia_jugado = '%s'"
+										, $conn->real_escape_string($id)
+										, $conn->real_escape_string($fecha));
 	        $rs = $conn->query($query);
-	        */
 	    }
 
 	}

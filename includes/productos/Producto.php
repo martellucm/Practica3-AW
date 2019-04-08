@@ -25,6 +25,26 @@ class Product {
         $this->num_votaciones = $num_votaciones;
     }
 
+	public static function getLastID(){
+		$app = Aplicacion::getSingleton();
+		$conn = $app->conexionBd();
+		$query = sprintf("SELECT id FROM producto ORDER BY id DESC ");
+		$rs = $conn->query($query);
+		$result = false;
+		if ($rs) {
+				if ( $rs->num_rows == 1) {
+						$fila = $rs->fetch_assoc();
+						$result = $fila['id'];
+				}
+				$rs->free();
+		} else {
+				echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+				exit();
+		}
+		return $result;
+	}
+
+
 	public static function buscaProduco($id)
     {
         $app = Aplicacion::getSingleton();
@@ -113,7 +133,7 @@ class Product {
         }
         return $producto;
     }
-    
+
      public static function actualizaProduct($id,$nombreProd,$descript, $edad, $jugadores, $link, $empresa){
              $app = Aplicacion::getSingleton();
             $conn = $app->conexionBd();
@@ -124,7 +144,7 @@ class Product {
                 , $conn->real_escape_string($jugadores)
                 , $conn->real_escape_string($link)
                 , $conn->real_escape_string($empresa));
-             $conn->query($query);    
+             $conn->query($query);
         }
   private static function actualiza($producto)
     {

@@ -23,6 +23,9 @@ require_once __DIR__.'/includes/comun/config.php';
 		 require 'includes/Torneos/viernesSel.php';
 		 require 'includes/Torneos/inscri_tourn.php';
 		 require 'includes/Torneos/act_punt.php';
+     if(isset($_SESSION['esAdmin']) && $_SESSION['esAdmin'] == true){
+       <a href=""><button name="Añadir Torneo"></button></a>
+     }
 	 }
 	?>
 	<!--
