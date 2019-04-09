@@ -27,20 +27,6 @@ require_once __DIR__.'/includes/comun/config.php';
      }
 	 }
 	?>
-	<!--
-	<p id="prueba">prueba</p>
-	<script type="application/javascript">
-		var hoy = new Date();
-		//var hoy = Date.now();
-		var ww = hoy.getDay();
-		var tt = hoy.getTime();
-		var dd = hoy.getDate();
-		var mm = hoy.getMonth()+1;
-		var yyyy = hoy.getFullYear();
-		var date = new Date(Date.UTC(yyyy, mm-1, dd, tt));
-		hoy = ww +'/' + dd+'/'+mm+'/'+yyyy;
-		document.getElementById("prueba").innerHTML = hoy;
-	</script>
-	-->
+
 </body>
 </html>

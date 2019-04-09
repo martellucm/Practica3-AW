@@ -1,9 +1,8 @@
 <?php
-class GestionaTorneo{
 
-	public static function crearTorneo(){
-		
-	}
+	require_once __DIR__.'/Inscrito.php';
+
+class GestionaTorneo{
 
     public static function getTopPlayers(){
 	       $app = Aplicacion::getSingleton();
@@ -26,7 +25,23 @@ class GestionaTorneo{
        return $result;
     } //Obtiene los id puntos e idJuego del torneo cuya puntuacion es mayor de 1
 
-      
+    public static function getTorneos(){
+		$aux = Inscrito::generaRandom();
+		$i = 0;
+		$result[] = $aux;
+		if(!empty($aux)){
+			while($i < 1){
+				if(!in_array($aux, $result)){
+					$result[] = $aux;
+				}
+				$aux = Inscrito::generaRandom();
+									$i++;
+
+			}
+		}
+
+		return $result;
+	}
 }
 
 ?>

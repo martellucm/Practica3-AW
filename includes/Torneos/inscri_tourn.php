@@ -1,14 +1,88 @@
+<?php
+	require_once __DIR__. '/../comun/config.php';
+	require_once __DIR__.'/GestionaTorneo.php';
+	require_once __DIR__.'/../comun/Form.php';
+	require_once __DIR__. '/Inscrito.php';
+	require_once __DIR__. '/../usuarios/Usuario.php';
+
+	class FormularioInscrip extends Form{
+
+		protected function procesaFormulario($datos){
+
+			if (! isset($datos['juego']) ) {
+				header('Location: torneo.php');
+				exit();
+			}
+
+			$formu = array();
+			$erroresFormulario = array();
+
+			$date = getdate();
+			 $hoy = $date['year'];
+			 $hoy .= '-';
+			 $hoy .= $date['mon'];
+			 $hoy .= '-';
+			 $hoy .= $date['mday'];
+			$idJuego= $datos['juego'];
+			$nom =$_SESSION['nombre'];
+			$id = Usuario::buscaUsuario($nom);
+			$viernes = $date['wday'] == 5? 1: 0;
+
+			if ( $id != true ) {
+				$erroresFormulario[] = "El juego tiene que existir";
+			}
+
+			if (count($erroresFormulario) === 0) {
+				$resul = Inscrito::inscribe($id->id(), $idJuego, $viernes, 0, $hoy);
+				if($resul instanceof Inscrito){
+					return 'index.php';
+				}else{
+					$erroresFormulario[] = "El usuario ya está inscrito";
+				}
+			}
+
+			return $erroresFormulario;
+
+		}
+
+		 protected function generaCamposFormulario($datosIniciales)
+		{
+
+			/*
+			* En caso de que hubiera un error se mantienen
+			* los datos para que puedas modificarlos
+			*/
+
+			$arr = GestionaTorneo::getTorneos();
+			$html = ''; // String que genera el html
+			$html .= '<fieldset>';
+            $html .= '<legend>Inscribirse</legend>';
+            $html .= '	<div class="grupo-control">';
+
+				 if(!empty($arr)){
+					$html .= '<select name="juego">';
+					foreach($arr as $row){
+						$html .= '<option value="'.$row.'">'.$row.'</option>';
+					}
+					$html .= '</select>';
+				 }
+				 else{
+					$html .= '<p>ERROR</p>';
+				 }
+            $html .= '  <div class="grupo-control"><button type="submit" name="login">Inscribirse</button></div>';
+			$html .= '</fieldset>';
+			return $html;
+		}
+
+
+	}
+?>
+
 	<div id="inscri_tour">
 		<h2>Inscribirse a un torneo</h2>
-		<form action="" method="POST">
-			<select name="juego">
-				<!--Torneos disponibles en bucle for-->
-				<option value="id1">Juego1</option>
-				<option value="id2">Juego2</option>
-				<option value="id3">Juego3</option>
-				<option value="id4">Juego4</option>
-			</select>
-			<input type="hidden" name ="idUsu" value="<?$_SESSION['id']?>">
-			<input type="submit" name="Inscribirse"> 
-		</form>
+
+		<?php
+			$formu = new FormularioInscrip('inscri', array('action' => NULL));
+			$formu->gestiona();
+		?>
 	</div>

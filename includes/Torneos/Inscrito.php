@@ -1,8 +1,9 @@
 <?php
-	require_once __DIR__ . '/../comun/Aplicacion.php';
 	require_once __DIR__. '/../productos/Producto.php';
 
-	class Inscristo{
+	require_once __DIR__. '/../comun/Aplicacion.php';
+
+	class Inscrito{
 
 	    private $id;
 
@@ -82,7 +83,7 @@
 	            if ( $rs->num_rows == 1) {
 	                $fila = $rs->fetch_assoc();
 	                //	construct($idUsuario, $idJuego, $jug_tot, $esViernes, $esMensual, $dia_jugado, $puntos, $ronda)
-	                $inscri = new Inscristo($fila['id_jugad_jugan'], $fila['idJuego'], $fila['jugadores_total'],
+	                $inscri = new Inscrito($fila['id_jugad_jugan'], $fila['idJuego'], $fila['jugadores_total'],
 	                					$fila['esViernes'], $fila['esMensual'], $fila['dia_jugado'],
 	                					$fila['puntos'], $fila['ronda']);
 	                $inscri->id = $fila['id'];
@@ -96,15 +97,61 @@
 	        return $result;
 	    }   // buscarUsuario con idJuego y fecha-- no puede ser el mismo dia
 
+		public static function buscaInscritoID($id){
+
+			 $app = Aplicacion::getSingleton();
+	        $conn = $app->conexionBd();
+	        $query = sprintf("SELECT * FROM torneos_disp T WHERE T.id = '%s'"
+	        		, $conn->real_escape_string($id));
+	        $rs = $conn->query($query);
+	        $result = false;
+	        if ($rs) {
+	            if ( $rs->num_rows == 1) {
+	                $fila = $rs->fetch_assoc();
+	                $result = $fila['id'];
+	            }
+	            $rs->free();
+	        } else {
+	            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+	            exit();
+	        }
+	        return $result;
+
+		}
+
+		private static function getTJug($idJu, $fecha){
+			    $app = Aplicacion::getSingleton();
+	        $conn = $app->conexionBd();
+	        $query = sprintf("SELECT jugadores_total FROM torneo_jugando T WHERE T.id_jugad_jugan = '%s' AND T.dia_jugado = '%s'"
+	        		, $conn->real_escape_string($idJu)
+	        		, $conn->real_escape_string($fecha));
+	        $rs = $conn->query($query);
+	        $result = false;
+	        if ($rs) {
+	            if ( $rs->num_rows == 1) {
+	                $fila = $rs->fetch_assoc();
+	                $result = $fila['jugadores_total'];
+	            }
+	            $rs->free();
+	        } else {
+	            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+	            exit();
+	        }
+	        return $result;
+		}
 
 
-	    public static function inscribe($idUsuario, $idJuego, $jug_tot, $esViernes, $esMensual, $dia_jugado, $puntos, $ronda)
+	    public static function inscribe($idUsuario, $idJuego, $esViernes, $esMensual, $dia_jugado)
 	    {
 	        $inscri = self::buscarInscrito($idUsuario, $dia_jugado);
 	        if ($inscri) {
 	            return false;
 	        }
-	        $inscri = new Inscristo($idUsuario, $idJuego, $jug_tot, $esViernes, $esMensual, $dia_jugado, 2, 'clasificacion');
+			$jug_tot = self::getTJug($idJuego, $dia_jugado);
+			if(!$jug_tot){ // Si no encuentra ningun torneo ese dia, entonces es el primero del torneo
+				$jug_tot = 1;
+			}
+	        $inscri = new Inscrito($idUsuario, $idJuego, $jug_tot, $esViernes, $esMensual, $dia_jugado, 2, 'clasificacion');
 	        return self::inserta($inscri);
 	    }
 
@@ -133,14 +180,36 @@
 
 	    public static function generaRandom(){
 				$prod = NULL;
-				$intMax = Product::getLastID();
-				$id = rand(0, $intMax);
-				$prod = Product::buscaProduco($id);
-				if($prod === NULL){
-					$prod = generaRandom();
-				}
+				$intMax = Inscrito::getLastID();
+				$id = rand(1, $intMax+1);
+				$prod = Inscrito::buscaInscritoID($id);
+				/*if($prod){
+					$prod = self::generaRandom();
+				}*/
+				$prod=1;
 				return $prod;
 	    }//Genera un número random entre todos los productos y devuelve uno si existe, si no vuelve a buscar
+
+
+
+		private static function getLastID(){
+			$app = Aplicacion::getSingleton();
+			$conn = $app->conexionBd();
+			$query = sprintf("SELECT id FROM torneos_disp ORDER BY id DESC ");
+			$rs = $conn->query($query);
+			$result = false;
+			if ($rs) {
+					if ( $rs->num_rows >= 1) {
+							$fila = $rs->fetch_assoc();
+							$result = $fila['id'];
+					}
+					$rs->free();
+			} else {
+					echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+					exit();
+			}
+			return $result;
+		}
 
 	    public static function eliminarInscrip($id, $fecha)
 	    {
