@@ -17,7 +17,7 @@ class RegistroTorneo extends Form {
 			$idjuego = isset($datos['_id']) ? $datos['_id'] : null;
 			var_dump($idjuego);
 
-			if ( empty($idjuego)) {
+			if ( empty($idjuego) && $idjuego != 0) {
 				$erroresFormulario[] = "Id de juego no valida.";
 			}
 
