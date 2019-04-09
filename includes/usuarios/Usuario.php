@@ -202,17 +202,6 @@ class Usuario
              $conn->query($query);
         }
 
-    public static function actualizaUsu($id, $nombre, $email, $descrip, $cumple){
-               $app = Aplicacion::getSingleton();
-              $conn = $app->conexionBd();
-              $query=sprintf("UPDATE usuarios SET nombre = '%s', email='%s', descrip='%s', cumple= '%s' WHERE id= '$id'"
-                  , $conn->real_escape_string($nombre)
-                  , $conn->real_escape_string($email)
-                  , $conn->real_escape_string($descrip)
-                  , $conn->real_escape_string($cumple));
-               $conn->query($query);
-    }
-
     public static function eliminarUsuario($id)
     {
          $app = Aplicacion::getSingleton();
