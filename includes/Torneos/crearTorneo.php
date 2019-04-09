@@ -15,7 +15,7 @@ class RegistroTorneo extends Form {
 			$erroresFormulario = array();
 
 			$idjuego = isset($datos['_id']) ? $datos['_id'] : null;
-			var_dump($idjuego);
+			
 
 			if ( empty($idjuego) && $idjuego != 0) {
 				$erroresFormulario[] = "Id de juego no valida.";
@@ -30,7 +30,7 @@ class RegistroTorneo extends Form {
 			if (count($erroresFormulario) === 0) {
 				$producto = Torneo::crea($idjuego, $fecha);
 				if (! $producto ) {
-					$erroresFormulario[] = "El producto ya existe";
+					$erroresFormulario[] = "El torneo ya existe";
 				} else {
 					return '../../torneo.php';
 				}

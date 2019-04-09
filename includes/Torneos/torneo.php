@@ -21,8 +21,8 @@ class Torneo{
     }
 	public static function crea($idJuego,$fecha)
     {
-        $torneo = self::busarTorneo($idJuego);
-        if ($product instanceof Product) {
+        $torneo = self::buscarTorneo($idJuego, $fecha);
+        if ($torneo) {
             return false;
         }
         $torneo = new Torneo($idJuego,$fecha);
@@ -45,18 +45,18 @@ class Torneo{
         return $torneo;
     }
 
-    public static function busarTorneo($idJuego)
+    public static function buscarTorneo($idJuego, $fecha)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM torneos_disp P WHERE P.idJuego = '$idJuego' ");
+        $query = sprintf("SELECT * FROM torneos_disp  WHERE idJuego = '%s' and fecha = '%s'", $conn->real_escape_string($idJuego), $conn->real_escape_string($fecha));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
             if ( $rs->num_rows == 1) {
                 $fila = $rs->fetch_assoc();
                 $torneo = new Torneo($fila['idJuego'], $fila['fecha']);
-                $torneo->idJuego = $idJuego;
+                $torneo->id = $fila['id'];
                 $result = $torneo;
             }
             $rs->free();
