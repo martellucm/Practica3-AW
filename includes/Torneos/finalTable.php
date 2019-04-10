@@ -23,12 +23,14 @@
 			$idprod = $rows[$i]["idJuego"];
 			$producto = Product::buscaProduco($idprod);
 			$usuario = Usuario::buscaUsuarioID($rows[$i]['id_jugad_jugan']);
-			echo "<tr>";
-			echo "<td>" . $fecha . "</td>";
-			echo '<td>' . $producto->nombreProd() . '</td>';
-			echo "<td>" . $usuario->nombreUsuario() . "</td>";
-			echo "<td>Final</td>";
-			echo "</tr>";
+			if($rows[$i]['ronda'] == "final"){
+				echo "<tr>";
+				echo "<td>" . $fecha . "</td>";
+				echo '<td>' . $producto->nombreProd() . '</td>';
+				echo "<td>" . $usuario->nombreUsuario() . "</td>";
+				echo "<td>Final</td>";
+				echo "</tr>";
+			}
 		}		
 	}
 	else{
