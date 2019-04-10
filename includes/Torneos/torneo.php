@@ -21,7 +21,7 @@ class Torneo{
     }
 	public static function crea($idJuego,$fecha)
     {
-        $torneo = self::buscarTorneo($idJuego, $fecha);
+        $torneo = self::buscarTorneoIDFecha($idJuego, $fecha);
         if ($torneo) {
             return false;
         }
@@ -45,7 +45,7 @@ class Torneo{
         return $torneo;
     }
 
-    public static function buscarTorneo($idJuego, $fecha)
+    public static function buscarTorneoIDFecha($idJuego, $fecha)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
@@ -57,6 +57,49 @@ class Torneo{
                 $fila = $rs->fetch_assoc();
                 $torneo = new Torneo($fila['idJuego'], $fila['fecha']);
                 $torneo->id = $fila['id'];
+                $result = $torneo;
+            }
+            $rs->free();
+        } else {
+            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $result;
+    }
+
+    public static function buscarUltimoTorneo($id)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query = sprintf("SELECT * FROM torneos_disp  WHERE id = '%s' ORDER BY id limit 1", $conn->real_escape_string($id));
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            if ( $rs->num_rows == 1) {
+                $fila = $rs->fetch_assoc();
+                $torneo = new Torneo($fila['idJuego'], $fila['fecha']);
+                $torneo->id = $fila['id'];
+                $result = $torneo;
+            }
+            $rs->free();
+        } else {
+            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $result;
+    }
+
+    public static function buscarTorneoIdJuego($id)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query = sprintf("SELECT idJuego FROM torneos_disp  WHERE id = '%s'", $conn->real_escape_string($id));
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            if ( $rs->num_rows == 1) {
+                $fila = $rs->fetch_assoc();
+                $torneo = $fila['idJuego'];
                 $result = $torneo;
             }
             $rs->free();
