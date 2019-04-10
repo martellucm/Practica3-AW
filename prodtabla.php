@@ -16,22 +16,34 @@ require_once __DIR__.'/includes/comun/config.php';
 
 	       <?php require'includes/estructura/leftnews.php'?>
 	    </div>
-      <div class="saludo">
+     <div class="menuadmin">
+      <div class="addprod">
       <?php
         if(isset($_SESSION['esAdmin']) && $_SESSION['esAdmin'] == true){
           ?>
-          <a href="crearProducto.php">Añadir </a>
+          <a href="crearProducto.php">Añadir juego </a>
           <?php
         }
         ?>
       </div>
+      <div class="addnoticia">
+      <?php
+        if(isset($_SESSION['esAdmin']) && $_SESSION['esAdmin'] == true){
+          ?>
+          <a href="">Añadir noticia</a>
+          <?php
+        }
+        ?>
+      </div>
+    </div>
       <div class="productos">
           <?php
             require_once __DIR__.'/includes/productos/GestionProducto.php';
              GestionProducto::listadoProductos();
           ?>
       </div>
-	 </div>
-	</div>
+   </div>
+  </div>
 </body>
 </html>
+

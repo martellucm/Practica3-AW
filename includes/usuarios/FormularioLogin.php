@@ -65,13 +65,13 @@
 				$passw = $datosIniciales['password']; // Opcional
 			}
 			$html = ''; // String que genera el html
-			$html .= '<fieldset>';
-            $html .= '<legend>Usuario y contraseña</legend>';
+			$html .= '<fieldset class = "formulario">';
+            $html .= '<legend>Login</legend>';
             $html .= '	<div class="grupo-control">';
-            $html .= '   <label>Nombre de usuario:</label> <input type="text" name="nombreUsuario" value="'.$nombrUsu.'"/>';
+            $html .= '   <label>  👤  </label> <input type="text" name="nombreUsuario" value="'.$nombrUsu.'"required/>';
             $html .= '  </div>';
             $html .= '  <div class="grupo-control">';
-            $html .= '   <label>Password:</label> <input type="password" name="password" value="'.$passw.'"/>';
+            $html .= '   <label>🔒</label> <input type="password" name="password" value="'.$passw.'"required/>';
             $html .= '  </div>';
             $html .= '  <div class="grupo-control"><button type="submit" name="login">Entrar</button></div>';
 			$html .= '</fieldset>';
@@ -83,7 +83,6 @@
 ?>
 
 <div id="contenido">
-	<h1>Acceso al sistema</h1>
 <?php
 		$formu = new FormularioLogin('login', array('action' => NULL));
 		$formu->gestiona();

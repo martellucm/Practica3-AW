@@ -68,7 +68,7 @@ class GestionProducto{
 
          
          echo '<div class ="name_product"> <p>'.$row['nombre'].'</p></div>';
-         echo '<div class ="p_product"> <p> Puntuación:'.$row['puntos'].'</p> </div>';
+         echo '<div class ="p_product"> <p>'.$row['puntos'].'⭐</p> </div>';
          ?>
            <div class ="eliminar_prod">
            <?php

@@ -70,18 +70,19 @@ class ModifUsu extends Form {
 			
 
 			$html = '';
-			$html .='	<fieldset>';
+			$html .='	<fieldset class ="formulario">';
+			$html .= '<legend>Modificar usuario</legend>';
 			$html .='	<div class="grupo-control">';
-			$html .='		<label>Nombre completo:</label> <input class="control" type="text" name="_nombre" value="'.$usuario->nombre() .'" required />';
+			$html .='		<label>Nombre completo</label> <input class="control" type="text" name="_nombre" value="'.$usuario->nombre() .'" required />';
 			$html .='	</div>';
 			$html .='	<div class="grupo-control">';
-			$html .='		<label>Correo electrónico:</label> <input class="control" type="text" name="_email" value="'.$usuario->email().'" required />';
+			$html .='		<label>Email</label> <input class="control" type="text" name="_email" value="'.$usuario->email().'" required />';
 			$html .='	</div>';
 			$html .='	<div class="grupo-control">';
-			$html .='		<label>Háblanos sobre ti:</label> <input class="control" type="text" name="_descrip" value="'.$usuario->descrip().'" required />';
+			$html .='		<label>Háblanos sobre ti</label> <input class="control" type="text" name="_descrip" value="'.$usuario->descrip().'" required />';
 			$html .='	</div>';
 			$html .='	<div class="grupo-control">';
-			$html .='		<label>Fecha de nacimiento:</label> <input class="control" type="date" name="_cumple" value="'.$usuario->cumple().'" required />';
+			$html .='		<label>Fecha de nacimiento</label> <input class="control" type="date" name="_cumple" value="'.$usuario->cumple().'" required />';
 			
 			$html .='<input class="grupo-control" type="hidden" name="_id" value="'.$usuario->id().'"/>';
 			$html .='	<div class="grupo-control"><button type="submit"  name="modificarusu">Modificar</button></div>';
@@ -93,7 +94,6 @@ class ModifUsu extends Form {
 ?>
 
 <div id="contenido">
-	<h1>Modificar usuario</h1>
 <?php
 		$formu = new ModifUsu('modificarusu', array('action' => NULL));
 		$formu->gestiona();

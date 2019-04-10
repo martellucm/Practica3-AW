@@ -8,13 +8,24 @@
           echo "<p>No puedes votar</p>";
         } else {
 		echo '<div>';
-		echo	 '<p>VALORA ESTE JUEGO <br> (0 - 10) </p>';
+		echo	 '<p>VALORA ESTE JUEGO</p>';
 
-		echo	 '<form action = "includes/productos/ValorarProducto.php?id='.$id.'" method="POST">
-			 <input type="number" name="val" value="0" min="0" max="10"><br>
-			 <input type="submit" value="Valorar">
-			 </form>';
+		echo '<form id="starRating" action = "includes/productos/ValorarProducto.php?id='.$id.'" method="POST">';
+			?>
+			<input type="submit" id="star5" name="val" value="5">
+			<label for="star5">★</label>
+			<input type="submit" id="star4" name="val" value="4">
+			<label for="star4">★</label>
+			<input type="submit" id="star3" name="val" value="3">
+			<label for="star3">★</label>
+			<input type="submit" id="star2" name="val" value="2">
+			<label for="star2">★</label>
+			<input type="submit" id="star1" name="val" value="1">
+			<label for="star1">★</label>
+			 </form>
+			 
 
+<?php
 		echo	'<p>Comentarios</p>';
 
 		if(isset($_SESSION['esAdmin']) && $_SESSION['esAdmin'] == true){

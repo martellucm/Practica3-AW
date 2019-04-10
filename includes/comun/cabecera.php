@@ -1,38 +1,47 @@
-<div id = "cabecera">
-	<a href='index.php'><img src="img/Logo.svg" width="200" height="300"></a>
-	<div class="saludo">
+
+<header>
+
+<div class="wrapp">
+	<div class="logo">
+			<a href='index.php'><img src="img/Logo.svg"></a>
+	</div>
+
+
+	<nav>
+
+			<a href='index.php'>Home</a>
+			<a href='prodtabla.php'>Productos</a>
+			<a href='torneo.php'>Torneos</a>
+			<a href='none_page.php'>About us</a>
+			<a href='none_page.php'>Foro</a>
+			
+			<?php
+			if(isset($_SESSION['esAdmin']) && $_SESSION['esAdmin'] == true){
+			?>
+			<a href='userTabla.php'>G.Usuarios</a>
+			<?php }?>
+		</nav>
+
+		<nav class="b">
+
 		<?php
 		if (isset($_SESSION["login"]) && ($_SESSION["login"]===true)) {
 			?>
-			<p>
-			<?php
-			echo "Bienvenido, " . $_SESSION['nombre'] . "";
-			?>
-			</p>
-			<a href='miBoqueron.php'>Mi boquerón</a>
-			<a href='logout.php'>(salir)</a>
+			<a class = "b" href='logout.php'>(salir)</a>
+			<a class = "b" href='miBoqueron.php'>Mi boquerón</a>
+			
 			
 		
 		<?php
 
 		} else {
-			echo "<a href='includes/usuarios/registro.php'>Registro</a>";
-			echo "<a href='login.php'>Login</a>";
+			 ?>
+			<a class = "b" href='registro.php'>Registro</a>
+			<a class= "b" href='login.php'>Login </a>
+			<?php
 		}
 		?>
-	</div>
-	<div class="navMenu">
-		<ul>
-			<li><a href='index.php'>Home</a></li>
-			<li><a href='prodtabla.php'>Productos</a></li>
-			<li><a href='torneo.php'>Torneos</a></li>
-			<li><a href='none_page.php'>About us</a></li>
-			<li><a href='none_page.php'>Foro</a></li>
-			<?php
-			if(isset($_SESSION['esAdmin']) && $_SESSION['esAdmin'] == true){
-			?>
-			<li><a href='userTabla.php'>G.Usuarios</a></li>
-			<?php }?>
-		</ul>
-	</div>
-</div>
+	</nav>
+		</div>
+	</header>
+

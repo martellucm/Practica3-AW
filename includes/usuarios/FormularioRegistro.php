@@ -1,7 +1,7 @@
 <?php 
-	require_once __DIR__.'/config.php';
+	require_once __DIR__.'/../comun/config.php';
 	require_once __DIR__.'/Usuario.php';
-	require_once __DIR__.'/Form.php';
+	require_once __DIR__.'/../comun/Form.php';
 	
 	class FormularioRegistro extends Form{
 		protected function procesaFormulario($datos){	
@@ -84,28 +84,29 @@
 				$descr = $datosIniciales['descrip'];
 				$cumple = $datosIniciales['cumple'];
 			}
-			
+	
 			$html = '';
-			$html .='	<fieldset>';
+			$html .= '<fieldset class = "formulario">';
+			$html .= '<legend>Registro</legend>';
 			$html .='	<div class="grupo-control">';
-			$html .='		<label>Nombre de usuario:</label> <input class="control" type="text" name="nombreUsuario" value="'.$nombrUsu.'" required />';
+			$html .='		<label>Nombre de usuario</label> <input class="control" type="text" name="nombreUsuario" value="'.$nombrUsu.'" required />';
 			$html .='	</div>';
 			$html .='	<div class="grupo-control">';
-			$html .='		<label>Nombre completo:</label> <input class="control" type="text" name="nombre" value="'.$nombr.'" required />';
+			$html .='		<label>Nombre completo</label> <input class="control" type="text" name="nombre" value="'.$nombr.'" required />';
 			$html .='	</div>';
 			$html .='	<div class="grupo-control">';
-			$html .='		<label>Password:</label> <input class="control" type="password" name="password" value="'.$passw.'" required />';
+			$html .='		<label>Contraseña</label> <input class="control" type="password" name="password" value="'.$passw.'" required />';
 			$html .='	</div>';
-			$html .='	<div class="grupo-control"><label>Vuelve a introducir el Password:</label> <input class="control" type="password" name="password2" /><br /></div>';
+			$html .='	<div class="grupo-control"><label>Repita contraseña</label> <input class="control" type="password" name="password2" /><br /></div>';
 			
 			$html .='	<div class="grupo-control">';
-			$html .='		<label>Correo electrónico:</label> <input class="control" type="text" name="email" value="'.$email.'" required />';
+			$html .='		<label>Email</label> <input class="control" type="text" name="email" value="'.$email.'" required />';
 			$html .='	</div>';
 			$html .='	<div class="grupo-control">';
-			$html .='		<label>Háblanos sobre ti:</label> <input class="control" type="text" name="descrip" value="'.$descr.'" required />';
+			$html .='		<label>Háblanos sobre ti</label> <input class="control" type="text" name="descrip" value="'.$descr.'" required />';
 			$html .='	</div>';
 			$html .='	<div class="grupo-control">';
-			$html .='		<label>Fecha de nacimiento:</label> <input class="control" type="date" name="cumple" value="'.$cumple.'" required />';
+			$html .='		<label>Fecha de nacimiento</label> <input class="control" type="date" name="cumple" value="'.$cumple.'" required />';
 			$html .='	</div>';
 			
 			
@@ -124,7 +125,6 @@
 
 
 <div id="contenido">
-	<h1>Registro de usuario</h1>
 <?php
 		$formu = new FormularioRegistro('registro', array('action' => NULL));
 		$formu->gestiona();
