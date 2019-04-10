@@ -26,7 +26,7 @@
    public static function getPodiumPlayers($juego, $fecha){
          $app = Aplicacion::getSingleton();
          $conn = $app->conexionBd();
-        if ($fecha === "" && $juego ==="-1"){
+        if (($fecha === "" && $juego ==="-1") || (is_null($fecha) && is_null($juego))){
           $query = sprintf("SELECT `id` FROM `usuarios` ORDER BY `ptosTourn`DESC LIMIT 3");
         }
         else if ($fecha !== "" && $juego !== "-1") {

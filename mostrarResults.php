@@ -10,13 +10,12 @@ require_once __DIR__.'/includes/comun/config.php';
   </head>
 <body>
   <div id ="contenedor">
-  	<div id = "contenido">
+  	<div id = "filtro">
 	    <?php require'includes/comun/cabecera.php'?>
-
       <div>
         <h2>Filtro para mostrar los torneos</h2>
         <p></p>
-        <form class="" action="tablaResults.php" method="post">
+        <form class="" action="mostrarResults.php" method="post">
           <label>Fecha del torneo</label>
           <input type="date" id="fecha" name="filtroF"  min="2018-03-25" max="2020-05-25" step="2">
           Seleccionar juego:
@@ -29,8 +28,9 @@ require_once __DIR__.'/includes/comun/config.php';
             </select>
           <input type="submit" name="buscar" value="Realizar búsqueda">
         </form>
-        
-        
+        <div id = "contenido">
+         <?php @require'tablaResults.php'?>
+         </div>
       </div>
 	 </div>
 	</div>
