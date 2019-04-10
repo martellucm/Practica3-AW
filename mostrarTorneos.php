@@ -17,10 +17,10 @@ require_once __DIR__ .'/includes/comun/config.php';
 				<p>(si no desea filtrar, deje los valores por defecto)</p>
 				<form class="" action="torn_disp.php" method="post">
 					<label>Fecha del torneo</label>
-					<input type="date" id="fecha" name="filtroF"  min="2018-03-25" max="2020-05-25" step="2">
+					<input type="date" id="fecha" name="filtroF"  min="2018-01-01" max="2020-05-25" step="2">
 					Seleccionar juego:
 						<select name="filtroJ">
-						<option value="0">vacio</option>
+						<option value="-1">vacio</option>
 						<?php
 						$app = Aplicacion::getSingleton();
 						$conn = $app->conexionBd();

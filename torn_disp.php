@@ -15,23 +15,23 @@ require_once __DIR__ .'/includes/usuarios/Usuario.php';
 		<div id="torneos_jug">
 			<?php require'includes/comun/cabecera.php'; ?>
 			<h2>Selecciona un torneo</h2>
-			<table class="torneo_table">
+			<table id="torneo_table">
 				<?php
 				$fecha = $_POST['filtroF'];
 				$juego = $_POST['filtroJ'];
 				$app = Aplicacion::getSingleton();
 				$conn = $app->conexionBd();
-				if($fecha != "" && $juego != ""){
+				if($fecha != "" && $juego != "-1"){
 					$query = sprintf("SELECT DISTINCT idJuego,dia_jugado FROM torneo_jugando t WHERE t.dia_jugado = '%s' AND t.idJuego = '%s'", $conn->real_escape_string($fecha), $conn->real_escape_string($juego));
+				}
+				else if($fecha == "" && $juego == "-1"){
+					$query = sprintf("SELECT DISTINCT idJuego,dia_jugado FROM torneo_jugando");
 				}
 				else if($fecha != ""){
 					$query = sprintf("SELECT DISTINCT idJuego,dia_jugado FROM torneo_jugando t WHERE t.dia_jugado = '%s'", $conn->real_escape_string($fecha));
 				}
-				else if($juego != ""){
+				else if($juego != "-1"){
 					$query = sprintf("SELECT DISTINCT idJuego,dia_jugado FROM torneo_jugando t WHERE t.idJuego = '%s'", $conn->real_escape_string($juego));
-				}
-				else{
-					$query = mysqli_query("SELECT * FROM torneo_jugando ORDER BY t.dia_jugado ASC") or die(mysqli_error());
 				}
 				 
 				$rs = $conn->query($query);
