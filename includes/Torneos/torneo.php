@@ -67,27 +67,24 @@ class Torneo{
         return $result;
     }
 
-    public static function buscarUltimoTorneo($id)
-    {
-        $app = Aplicacion::getSingleton();
-        $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM torneos_disp  WHERE id = '%s' ORDER BY id limit 1", $conn->real_escape_string($id));
-        $rs = $conn->query($query);
-        $result = false;
-        if ($rs) {
-            if ( $rs->num_rows == 1) {
-                $fila = $rs->fetch_assoc();
-                $torneo = new Torneo($fila['idJuego'], $fila['fecha']);
-                $torneo->id = $fila['id'];
-                $result = $torneo;
-            }
-            $rs->free();
-        } else {
-            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
-            exit();
-        }
-        return $result;
-    }
+		public static function getLastID(){
+			$app = Aplicacion::getSingleton();
+			$conn = $app->conexionBd();
+			$query = sprintf("SELECT id FROM torneos_disp ORDER BY id DESC ");
+			$rs = $conn->query($query);
+			$result = false;
+			if ($rs) {
+					if ( $rs->num_rows >= 1) {
+							$fila = $rs->fetch_assoc();
+							$result = $fila['id'];
+					}
+					$rs->free();
+			} else {
+					echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+					exit();
+			}
+			return $result;
+		}
 
     public static function buscarTorneoIdJuego($id)
     {
