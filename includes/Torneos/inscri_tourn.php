@@ -3,6 +3,7 @@
 	require_once __DIR__.'/GestionaTorneo.php';
 	require_once __DIR__.'/../comun/Form.php';
 	require_once __DIR__. '/Inscrito.php';
+	require_once __DIR__. '/torneo.php';
 	require_once __DIR__. '/../usuarios/Usuario.php';
 
 	class FormularioInscrip extends Form{
@@ -62,7 +63,8 @@
 				 if(!empty($arr)){
 					$html .= '<select name="juego">';
 					foreach($arr as $row){
-						$html .= '<option value="'.$row.'">'.$row.'</option>';
+						$val = Torneo::buscarTorneoIdJuego($row);
+						$html .= '<option value="'.$val.'">'.$row.'</option>';
 					}
 					$html .= '</select>';
 				 }

@@ -1,6 +1,6 @@
 <?php
 	require_once __DIR__. '/../productos/Producto.php';
-
+	require_once __DIR__. '/torneo.php';
 	require_once __DIR__. '/../comun/Aplicacion.php';
 
 	class Inscrito{
@@ -180,13 +180,14 @@
 
 	    public static function generaRandom(){
 				$prod = NULL;
-				$intMax = Inscrito::getLastID();
-				$id = rand(1, $intMax+1);
-				$prod = Inscrito::buscaInscritoID($id);
-				/*if($prod){
-					$prod = self::generaRandom();
-				}*/
-				$prod=1;
+				$intMax = Torneo::getLastID();
+				if($intMax >= 1){
+					$id = rand(1, $intMax);
+					$prod = Inscrito::buscaInscritoID($id);
+					if(!$prod){
+						$prod = self::generaRandom();
+					}
+				}
 				return $prod;
 	    }//Genera un número random entre todos los productos y devuelve uno si existe, si no vuelve a buscar
 
