@@ -21,7 +21,7 @@ require_once __DIR__.'/includes/comun/config.php';
           <input type="date" id="fecha" name="filtroF"  min="2018-03-25" max="2020-05-25" step="2">
           Seleccionar juego:
             <select name="filtroJ">
-            <option value="0">Los mejores</option>   
+            <option value="-1">Los mejores</option>   
              <?php
                require_once __DIR__.'/includes/Torneos/results.php';
                MostrarResults::filtarPorDefecto();

@@ -7,7 +7,7 @@ class GestionaTorneo{
     public static function getTopPlayers($juego, $fecha){
 	       $app = Aplicacion::getSingleton();
 	       $conn = $app->conexionBd();
-	       if ($fecha === "" && $juego === "0"){
+	       if ($fecha === "" && $juego === "-1"){
           	  $query = sprintf("SELECT * FROM torneo  WHERE Puntuacion > 1 ORDER BY Puntuacion DESC");
 	        }
 	        else if($fecha !== ""){
@@ -16,7 +16,7 @@ class GestionaTorneo{
 	        else if($juego !== ""){
 	          $query = sprintf("SELECT * FROM torneo  WHERE Puntuacion > 1 and idJuego = '%s' ORDER BY `Puntuacion`DESC", $conn->real_escape_string($juego));
 	        }
-	        else {
+	        else{
 	          $query = sprintf("SELECT * FROM torneo  WHERE Puntuacion > 1 and dia_ganado = '%s' AND idJuego = '%s' ORDER BY Puntuacion DESC", $conn->real_escape_string($fecha), $conn->real_escape_string($juego));
 	        }
 
