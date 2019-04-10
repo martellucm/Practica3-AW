@@ -8,10 +8,37 @@
 
   class MostrarResults{
 
-   public static function getPodiumPlayers(){
+
+    public static function filtarPorDefecto(){
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query = sprintf("SELECT * FROM producto");
+        $rs = $conn->query($query);
+      
+        while($row = mysqli_fetch_assoc($rs)){
+          $rows[] = $row;
+        }
+      
+        for($i = 0; $i < count($rows); $i++){
+          echo "<option value=".$rows[$i]["id"].">".$rows[$i]["nombreProd"]."</option>";
+        } 
+    }
+
+   public static function getPodiumPlayers($juego, $fecha){
          $app = Aplicacion::getSingleton();
          $conn = $app->conexionBd();
-         $query = sprintf("SELECT `id` FROM `usuarios`ORDER BY `ptosTourn`DESC LIMIT 3");
+        if ($fecha === "" && $juego === "0"){
+          $query = sprintf("SELECT `id` FROM `usuarios` ORDER BY `ptosTourn`DESC LIMIT 3");
+        }
+        else if($fecha !== "" && $juego !== ""){
+          $query = sprintf("SELECT `idUsuario` as id FROM `torneo` WHERE dia_ganado = '%s' AND idJuego = '%s' ORDER BY `Puntuacion`DESC LIMIT 3", $conn->real_escape_string($fecha), $conn->real_escape_string($juego));
+        }
+        else if($fecha !== ""){
+          $query = sprintf("SELECT `idUsuario` as id FROM torneo WHERE dia_ganado = '%s' ORDER BY `Puntuacion`DESC LIMIT 3", $conn->real_escape_string($fecha));
+        }
+        else if($juego !== ""){
+          $query = sprintf("SELECT `idUsuario` as id FROM torneo WHERE idJuego = '%s' ORDER BY `Puntuacion`DESC LIMIT 3", $conn->real_escape_string($juego));
+        }
          $rs = $conn->query($query);
          $result = false;
          if ($rs) {
@@ -56,10 +83,11 @@
          echo '</div>';
     }
 
-    public static function getResults($n){
-    	
+    public static function getResults($n){    
+        $juego = $_POST['filtroJ'];
+        $fecha = $_POST['filtroF'];	
     	  if ($n !== 3){
-    	  	$ganador = GestionaTorneo::getTopPlayers();
+    	  	$ganador = GestionaTorneo::getTopPlayers($juego, $fecha);
          		 echo '<table class ="name_table">';
         		 echo '<tr> 
          			<th>Nombre</th>
@@ -68,7 +96,7 @@
    					</tr>';
          }
          else{
-         	$ganador = self::getPodiumPlayers();
+         	$ganador = self::getPodiumPlayers($juego, $fecha);
          }
          $i = 0;
          if(is_array($ganador)){
