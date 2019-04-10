@@ -905,3 +905,32 @@ form#starRating label:hover{
 	color:#0000FF;
 	
 }
+
+#torneo_table, #qualifyingTable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#torneo_table td, #torneo_table th, #qualifyingTable td, #qualifyingTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#torneo_table tr:nth-child(even){background-color: #f2f2f2;}
+#qualifyingTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#torneo_table tr:hover {background-color: #ddd;}
+#qualifyingTable tr:hover {background-color: #ddd;}
+
+#torneo_table, #qualifyingTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+}

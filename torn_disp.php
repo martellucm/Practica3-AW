@@ -15,7 +15,7 @@ require_once __DIR__ .'/includes/usuarios/Usuario.php';
 		<div id="torneos_jug">
 			<?php require'includes/comun/cabecera.php'; ?>
 			<h2>Selecciona un torneo</h2>
-			<table class="torneo_table">
+			<table id="torneo_table">
 				<?php
 				$fecha = $_POST['filtroF'];
 				$juego = $_POST['filtroJ'];
