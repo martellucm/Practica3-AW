@@ -30,14 +30,13 @@ class GestionaTorneo{
 		$i = 0;
 		$result[] = $aux;
 		if(!empty($aux)){
-			while($i < 1){
-				if(!in_array($aux, $result)){
-					$result[] = $aux;
-				}
-				$aux = Inscrito::generaRandom();
-									$i++;
-
-			}
+			while($i <1){ // Tamaño de torneos a expotar
+						if(!in_array($aux, $result)){
+							$result[] = $aux;
+							$i++;
+						}
+						$aux = Inscrito::generaRandom();
+					}
 		}
 
 		return $result;
