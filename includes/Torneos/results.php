@@ -8,7 +8,6 @@
 
   class MostrarResults{
 
-
     public static function filtarPorDefecto(){
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
@@ -30,15 +29,16 @@
         if ($fecha === "" && $juego ==="-1"){
           $query = sprintf("SELECT `id` FROM `usuarios` ORDER BY `ptosTourn`DESC LIMIT 3");
         }
+        else if ($fecha !== "" && $juego !== "-1") {
+          $query = sprintf("SELECT `idUsuario` as id FROM `torneo` WHERE dia_ganado = '%s' AND idJuego = '%s' ORDER BY `Puntuacion`DESC LIMIT 3", $conn->real_escape_string($fecha), $conn->real_escape_string($juego));
+        }
         else if($fecha !== ""){
           $query = sprintf("SELECT `idUsuario` as id FROM torneo WHERE dia_ganado = '%s' ORDER BY `Puntuacion`DESC LIMIT 3", $conn->real_escape_string($fecha));
         }
         else if($juego !== ""){
           $query = sprintf("SELECT `idUsuario` as id FROM torneo WHERE idJuego = '%s' ORDER BY `Puntuacion`DESC LIMIT 3", $conn->real_escape_string($juego));
         }
-         else {
-          $query = sprintf("SELECT `idUsuario` as id FROM `torneo` WHERE dia_ganado = '%s' AND idJuego = '%s' ORDER BY `Puntuacion`DESC LIMIT 3", $conn->real_escape_string($fecha), $conn->real_escape_string($juego));
-        }
+     
          $rs = $conn->query($query);
          $result = false;
          if ($rs) {

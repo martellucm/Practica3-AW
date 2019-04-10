@@ -10,15 +10,16 @@ class GestionaTorneo{
 	       if ($fecha === "" && $juego === "-1"){
           	  $query = sprintf("SELECT * FROM torneo  WHERE Puntuacion > 1 ORDER BY Puntuacion DESC");
 	        }
+	        else if ($fecha !== "" && $juego !== "-1"){
+	          $query = sprintf("SELECT * FROM torneo  WHERE Puntuacion > 1 and dia_ganado = '%s' AND idJuego = '%s' ORDER BY Puntuacion DESC", $conn->real_escape_string($fecha), $conn->real_escape_string($juego));
+	        }
 	        else if($fecha !== ""){
 	          $query = sprintf("SELECT * FROM torneo  WHERE Puntuacion > 1 and dia_ganado = '%s' ORDER BY `Puntuacion`DESC", $conn->real_escape_string($fecha));
 	        }
 	        else if($juego !== ""){
 	          $query = sprintf("SELECT * FROM torneo  WHERE Puntuacion > 1 and idJuego = '%s' ORDER BY `Puntuacion`DESC", $conn->real_escape_string($juego));
 	        }
-	        else{
-	          $query = sprintf("SELECT * FROM torneo  WHERE Puntuacion > 1 and dia_ganado = '%s' AND idJuego = '%s' ORDER BY Puntuacion DESC", $conn->real_escape_string($fecha), $conn->real_escape_string($juego));
-	        }
+
 
 	       $rs = $conn->query($query);
 	       $result = false;
