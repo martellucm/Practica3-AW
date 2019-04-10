@@ -19,7 +19,20 @@ require_once __DIR__ .'/includes/usuarios/Usuario.php';
 				require'includes/torneos/qualifyingTable.php';
 				require'includes/torneos/semisTable.php';
 				require'includes/torneos/finalTable.php';
-				?>		
+				?>
+				<?php 
+				if(isset($_SESSION['login']) && $_SESSION['login'] == true){
+				$usuario = Usuario::buscaUsuario($_SESSION["nombre"]);
+				$fecha = $_GET['fecha'];
+				$idProd = $_GET['id'];
+				?>
+				<form action="includes/torneos/pasaRondas.php" method="post" id="nextRound">
+					<input type="hidden" name="idJug" value="<?php echo $usuario->id(); ?>" />
+					<input type="hidden" name="idProd" value="<?php echo $idProd; ?>" />
+					<input type="hidden" name="fecha" value="<?php echo $fecha; ?>" />
+				</form>
+				<button type="submit" form="nextRound" value="Submit">Pasar de ronda</button>
+				<?php }?>
 		</div>
 	</div>
 </body>
