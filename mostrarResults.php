@@ -17,13 +17,13 @@ require_once __DIR__.'/includes/comun/config.php';
         <p></p>
         <form class="" action="mostrarResults.php" method="post">
           <label>Fecha del torneo</label>
-          <input type="date" id="fecha" name="filtroF"  min="2018-03-25" max="2020-05-25" step="2">
+          <input type="date" id="fecha" name="filtroF"  min="2018-03-25" max="2020-05-25">
           Seleccionar juego:
             <select name="filtroJ">
             <option value="-1">Los mejores</option>   
              <?php
-               require_once __DIR__.'/includes/Torneos/results.php';
-               MostrarResults::filtarPorDefecto();
+               require_once __DIR__.'/includes/Torneos/GestionaTorneo.php';
+               GestionaTorneo::filtarPorDefecto();
               ?>         
             </select>
           <input type="submit" name="buscar" value="Realizar búsqueda">

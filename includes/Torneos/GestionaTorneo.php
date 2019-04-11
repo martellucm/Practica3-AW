@@ -1,8 +1,23 @@
 <?php
 
 	require_once __DIR__.'/Inscrito.php';
+	require_once __DIR__.'/../productos/Producto.php';
 
 class GestionaTorneo{
+	  public static function filtarPorDefecto(){
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query = sprintf("SELECT * FROM producto");
+        $rs = $conn->query($query);
+      
+        while($row = mysqli_fetch_assoc($rs)){
+          $rows[] = $row;
+        }
+      
+        for($i = 0; $i < count($rows); $i++){
+          echo "<option value=".$rows[$i]["id"].">".$rows[$i]["nombreProd"]."</option>";
+        } 
+    }
 
     public static function getTopPlayers($juego, $fecha){
 	       $app = Aplicacion::getSingleton();
