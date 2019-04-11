@@ -107,6 +107,28 @@ class Torneo{
         return $result;
     }
 
+		public static function getTorneoID($id)
+	 {
+			 $app = Aplicacion::getSingleton();
+			 $conn = $app->conexionBd();
+			 $query = sprintf("SELECT * FROM torneo_jugando  WHERE id_jugad_jugan = '%s'", $conn->real_escape_string($id));
+			 $rs = $conn->query($query);
+			 $result = false;
+			 if ($rs) {
+					 if ( $rs->num_rows >= 1) {
+			 while($fila = mysqli_fetch_assoc($rs)){
+				 $torneo[] = array('juego' => $fila['idJuego'], 'fecha' => $fila['dia_jugado']);
+			 }
+							 $result = $torneo;
+					 }
+					 $rs->free();
+			 } else {
+					 echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+					 exit();
+			 }
+			 return $result;
+	 }
+
     public function id()
     {
         return $this->id;

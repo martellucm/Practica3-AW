@@ -41,11 +41,12 @@ if($rs->fetch_array() != NULL){
 		$rs2 = $rs2->fetch_assoc();
 		$newID = $rs2['id'];
 
-		$query=sprintf("UPDATE `torneo_jugando`SET puntos = '%s', ronda='%s' WHERE id_jugad_jugan= '%s' AND idJuego = '%s'"
+		$query=sprintf("UPDATE `torneo_jugando`SET puntos = '%s', ronda='%s' WHERE id_jugad_jugan= '%s' AND idJuego = '%s' AND dia_jugado = '%s'"
 				, $conn->real_escape_string($result['puntos'])
 				, $conn->real_escape_string($nextRound)
 				, $conn->real_escape_string($idJug)
 				, $conn->real_escape_string($idProd)
+				, $conn->real_escape_string($fecha)
 			);
 
 		$rs = $conn->query($query);
