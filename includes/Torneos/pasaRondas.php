@@ -24,7 +24,7 @@ if($rs->fetch_array() != NULL){
 		$query = sprintf("SELECT * FROM `torneo_jugando` WHERE `id_jugad_jugan` = '%s' AND `ronda` = '%s'"
 				, $conn->real_escape_string($idJug), $conn->real_escape_string($semis));
 		$rs = $conn->query($query);
-		//Si no está quiere decir que está en la ronda de clasificación, por lo que 
+		//Si no está quiere decir que está en la ronda de clasificación, por lo que
 		//tendremos que llevarle a la semifinal.
 		if (mysqli_fetch_assoc($rs) == NULL) {
 			$clasificacion = 'clasificacion';
@@ -33,25 +33,20 @@ if($rs->fetch_array() != NULL){
 			$rs = $conn->query($query);
 			$nextRound = 'semis';
 		}
-		
+
 		$result = $rs->fetch_assoc();
 
 		$query = sprintf("SELECT * FROM `torneo_jugando` ORDER BY id DESC");
 		$rs2 = $conn->query($query);
 		$rs2 = $rs2->fetch_assoc();
 		$newID = $rs2['id'];
-	 
-		$query=sprintf("INSERT INTO `torneo_jugando`(id, jugadores_total, id_jugad_jugan, idJuego, esViernes, esMensual, dia_jugado, puntos, ronda)
-							VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"
-				, $conn->real_escape_string($newID + 1)
-				, $conn->real_escape_string($result['jugadores_total'])
+
+		$query=sprintf("UPDATE `torneo_jugando`SET puntos = '%s', ronda='%s' WHERE id_jugad_jugan= '%s' AND idJuego = '%s'"
+				, $conn->real_escape_string($result['puntos'])
+				, $conn->real_escape_string($nextRound)
 				, $conn->real_escape_string($idJug)
 				, $conn->real_escape_string($idProd)
-				, $conn->real_escape_string($result['esViernes'])
-				, $conn->real_escape_string($result['esMensual'])
-				, $conn->real_escape_string($fecha)
-				, $conn->real_escape_string($result['puntos'])
-				, $conn->real_escape_string($nextRound));
+			);
 
 		$rs = $conn->query($query);
 	}
