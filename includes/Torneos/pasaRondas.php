@@ -46,7 +46,6 @@ if($rs->fetch_array() != NULL){
 				, $conn->real_escape_string($nextRound)
 				, $conn->real_escape_string($idJug)
 				, $conn->real_escape_string($idProd)
-				, $conn->real_escape_string($idProd)
 				, $conn->real_escape_string($fecha)
 			);
 
