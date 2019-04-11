@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2019 a las 12:29:00
+-- Tiempo de generación: 11-04-2019 a las 19:44:58
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -92,6 +92,15 @@ CREATE TABLE `torneo` (
   `esViernes` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `torneo`
+--
+
+INSERT INTO `torneo` (`idTourn`, `idUsuario`, `tipoTorneo`, `idJuego`, `Puntuacion`, `dia_ganado`, `esMensual`, `esViernes`) VALUES
+(1, 5, 'Viernes', 0, 7, '2019-04-08', 0, 1),
+(2, 4, 'Normal', 3, 7, '2019-03-15', 0, 0),
+(3, 6, 'Mensual', 1, 7, '2019-02-14', 1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -103,6 +112,22 @@ CREATE TABLE `torneos_disp` (
   `idJuego` int(11) NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `torneos_disp`
+--
+
+INSERT INTO `torneos_disp` (`id`, `idJuego`, `fecha`) VALUES
+(1, 2, '2019-04-01'),
+(2, 3, '2019-04-04'),
+(3, 0, '2019-04-20'),
+(4, 3, '2019-04-15'),
+(5, 2, '2019-04-12'),
+(6, 3, '2019-04-28'),
+(7, 1, '2019-04-25'),
+(8, 0, '2019-04-17'),
+(9, 1, '2019-04-18'),
+(10, 2, '2019-04-21');
 
 -- --------------------------------------------------------
 
@@ -121,6 +146,20 @@ CREATE TABLE `torneo_jugando` (
   `puntos` int(10) NOT NULL DEFAULT '0',
   `ronda` varchar(40) NOT NULL DEFAULT 'clasificacion'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `torneo_jugando`
+--
+
+INSERT INTO `torneo_jugando` (`id`, `jugadores_total`, `id_jugad_jugan`, `idJuego`, `esViernes`, `esMensual`, `dia_jugado`, `puntos`, `ronda`) VALUES
+(1, 1, 1, 1, 0, 0, '2019-04-09', 2, 'semis'),
+(2, 1, 2, 1, 0, 0, '2019-04-09', 2, 'semis'),
+(6, 1, 6, 2, 0, 0, '2019-04-15', 5, 'semis'),
+(7, 1, 7, 2, 0, 0, '2019-04-15', 2, 'semis'),
+(8, 1, 5, 2, 0, 0, '2019-04-20', 5, 'semis'),
+(9, 1, 4, 2, 0, 0, '2019-04-15', 7, 'final'),
+(10, 0, 1, 2, 0, 0, '2019-04-15', 2, 'final'),
+(11, 0, 3, 2, 0, 0, '2019-04-15', 2, 'clasificacion');
 
 -- --------------------------------------------------------
 
@@ -149,8 +188,12 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombreUsuario`, `nombre`, `password`, `email`, `ptosForum`, `ptosProd`, `ptosTourn`, `avatar`, `rol`, `descrip`, `cumple`) VALUES
 (1, 'Chuster', 'Chuster Garcia', '$2y$10$.iJf.qUonY.Im9nM419W6eKWw0.q43ChW7maLJ3J/turPzzctyZ8O', 'chuster@gmail.com', 0, 0, 20, '', 'admin', 'Soy una persona meramente interesante', '1995-05-23'),
-(2, 'Lolito', 'Lolito Lopez', '$2y$10$.iJf.qUonY.Im9nM419W6eKWw0.q43ChW7maLJ3J/turPzzctyZ8O', 'lolito@gmail.com', 0, 0, 21, '', 'user', 'asdkasjd lasjk lk jasdlkjas dlj dlkjasldjk aldkjas dlkasj dlkasj dlakjd laskjd lsakjdsalkdjsadjhfjkhas kljasd ', '2016-11-15'),
-(3, 'Usuario2', 'Segundo Usuario', '$2y$10$muGrjmdpdTFlSeIX1QdTq.y0ufF8PhSLn56VgJGAxKPNu5gDWnT2a', 'user_dos@gmail.com', 0, 0, 0, 'noob', 'user', 'Es un usuario de prueba para tener en cuenta', '1995-05-23');
+(2, 'Lolito', 'Lolito Lopez', '$2y$10$.iJf.qUonY.Im9nM419W6eKWw0.q43ChW7maLJ3J/turPzzctyZ8O', 'lolito@gmail.com', 0, 0, 81, '', 'user', 'asdkasjd lasjk lk jasdlkjas dlj dlkjasldjk aldkjas dlkasj dlkasj dlakjd laskjd lsakjdsalkdjsadjhfjkhas kljasd ', '2016-11-15'),
+(3, 'Usuario2', 'Segundo Usuario', '$2y$10$.iJf.qUonY.Im9nM419W6eKWw0.q43ChW7maLJ3J/turPzzctyZ8O', 'user_dos@gmail.com', 0, 0, 0, '', 'user', 'Es un usuario de prueba para tener en cuenta', '1995-05-23'),
+(4, 'Victor', 'Victor Manual Marta', '$2y$10$.iJf.qUonY.Im9nM419W6eKWw0.q43ChW7maLJ3J/turPzzctyZ8O', 'thevtc@gmail.com', 20, 7, 30, '', 'admin', 'Soy un persona bien alta, no lo quiero decir pero creo que es costilla de la edad.', '1998-05-18'),
+(5, 'Dani', 'Daniel Lamana Gemma', '$2y$10$.iJf.qUonY.Im9nM419W6eKWw0.q43ChW7maLJ3J/turPzzctyZ8O', 'danonino@gmail.com', 45, 12, 28, '', 'admin', NULL, NULL),
+(6, 'Rita', 'Rita LaCantaora Canario', '$2y$10$.iJf.qUonY.Im9nM419W6eKWw0.q43ChW7maLJ3J/turPzzctyZ8O', 'ritaestenovez@gmail.com', 22, 46, 18, '', 'admin', 'Hola muyayos soy diseñadora web', '1975-07-26'),
+(7, 'Miguel', 'Miguel Murciano Atope', '$2y$10$.iJf.qUonY.Im9nM419W6eKWw0.q43ChW7maLJ3J/turPzzctyZ8O', 'martelldelamesa@gmail.com', 5, 15, 75, '', 'admin', 'Acho soy yo el Miguel, ¿nos echamos un PhotoRoullette?', '1962-09-13');
 
 --
 -- Índices para tablas volcadas
@@ -184,6 +227,13 @@ ALTER TABLE `torneo`
   ADD PRIMARY KEY (`idTourn`),
   ADD KEY `torneo_ibfk_1` (`idJuego`),
   ADD KEY `torneo_ibfk_2` (`idUsuario`);
+
+--
+-- Indices de la tabla `torneos_disp`
+--
+ALTER TABLE `torneos_disp`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `JuegoDisp_FK` (`idJuego`);
 
 --
 -- Indices de la tabla `torneo_jugando`
@@ -226,19 +276,25 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `torneo`
 --
 ALTER TABLE `torneo`
-  MODIFY `idTourn` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTourn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `torneos_disp`
+--
+ALTER TABLE `torneos_disp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `torneo_jugando`
 --
 ALTER TABLE `torneo_jugando`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
@@ -257,6 +313,12 @@ ALTER TABLE `comentario`
 ALTER TABLE `torneo`
   ADD CONSTRAINT `torneo_ibfk_1` FOREIGN KEY (`idJuego`) REFERENCES `producto` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `torneo_ibfk_2` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `torneos_disp`
+--
+ALTER TABLE `torneos_disp`
+  ADD CONSTRAINT `JuegoDisp_FK` FOREIGN KEY (`idJuego`) REFERENCES `producto` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `torneo_jugando`
