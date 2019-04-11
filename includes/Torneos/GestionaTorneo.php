@@ -9,14 +9,14 @@ class GestionaTorneo{
         $conn = $app->conexionBd();
         $query = sprintf("SELECT * FROM producto");
         $rs = $conn->query($query);
-      
+
         while($row = mysqli_fetch_assoc($rs)){
           $rows[] = $row;
         }
-      
+
         for($i = 0; $i < count($rows); $i++){
           echo "<option value=".$rows[$i]["id"].">".$rows[$i]["nombreProd"]."</option>";
-        } 
+        }
     }
 
     public static function getTopPlayers($juego, $fecha){
@@ -68,6 +68,36 @@ class GestionaTorneo{
 		}
 
 		return $result;
+	}
+
+	public static function setGanador($datos){
+		$app = Aplicacion::getSingleton();
+		$conn = $app->conexionBd();
+		$query=sprintf("INSERT INTO torneo(idUsuario, tipoTorneo, idJuego, Puntuacion, dia_ganado, esMensual, esViernes)
+						VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s')"
+			, $conn->real_escape_string($datos['idUsuario'])
+			, $conn->real_escape_string($datos['tipoTorneo'])
+			, $conn->real_escape_string($datos['idJuego'])
+			, $conn->real_escape_string($datos['Puntuacion'])
+			, $conn->real_escape_string($datos['dia_ganado'])
+			, $conn->real_escape_string($datos['esMensual'])
+			, $conn->real_escape_string($datos['esViernes']));
+		if ( $conn->query($query) ) {
+			$query =sprintf("DELETE FROM `torneo_jugando` WHERE `idJuego` = '%s' AND `dia_jugado` = '%s'"
+					, $conn->real_escape_string($datos['idJuego'])
+					, $conn->real_escape_string($datos['dia_ganado']));
+			if($conn->query($query)){
+				header('Location: ../index.php');
+			}else{
+				echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+				exit();
+			}
+		} else {
+			echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+			exit();
+		}
+
+		return $jug;
 	}
 }
 
