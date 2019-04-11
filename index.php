@@ -16,22 +16,25 @@ require_once __DIR__.'/includes/comun/config.php';
 	       <?php require'includes/estructura/leftnews.php'?>
 	    </div>
 	    <div id = "publi">
-        <img class="foto_publi" src="img/publi.jpg" width="784" height="200">
+        <img class="foto_publi" src="img/publi.jpg">
       </div>
-	   	<div id = "month">
-        <h2>Ganador del MES</h2>
-	    <?php
-        require_once __DIR__.'/includes/usuarios/GestionaUsuario.php';
-           GestionUsuario::mostrarWW();
-	      ?>
-        </div>
-	    <div id = "week">
-        <h2>Ganador de la SEMANA</h2>
-			<?php
-				GestionUsuario::mostrarWW();
-			?>
+	 <div id="winners">
+		   	<div id = "month">
+		        <h2>Ganador del mes</h2>
+			    <?php
+		        require_once __DIR__.'/includes/usuarios/GestionaUsuario.php';
+		           GestionUsuario::mostrarWW();
+			      ?>
+		        </div>
+		    <div id = "week">
+		        <h2>Ganador de la semana</h2>
+					<?php
+						GestionUsuario::mostrarWW();
+					?>
+			</div>
 		</div>
-    <div class = "productos">
+    <div class = "productosind">
+    	<h2>Juegos destacados</h2>
         <?php
           require_once __DIR__.'/includes/productos/GestionProducto.php';GestionProducto::mejoresProductos('3');
         ?>

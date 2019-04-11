@@ -1,19 +1,19 @@
 <?php
     require_once __DIR__.'/Usuario.php';
     class GestionUsuario{
-      public static function mostrarWW(){
+          public static function mostrarWW(){
         $user = Usuario::getWW();
         if($user instanceof Usuario){
           $id = $user->id();
             $directorio = "img/users/$id.jpg";
             if(file_get_contents($directorio) == null){
-                    echo '<div><img src="img/users/default_user.png"/></div> ';
+                    echo '<div id="img_userh"><img src="img/users/default_user.png"/></div> ';
                 }
                 else{
-                    echo '<div id = "img_user"><img src='.$directorio.'></div>';
+                    echo '<div id = "img_userh"><img src='.$directorio.'></div>';
                 }
-          echo "<div><p>".$user->nombreUsuario()."</p>";
-          echo "<p>".$user->ptosTourn()."</p> </div>";
+          echo "<div id=\"user_data\"><p>Usuario: ".$user->nombreUsuario()."</p>";
+          echo "<p> Puntos: ".$user->ptosTourn()."</p> </div>";
         }
         else{
             echo "<p>No hay un ganador claro</p>";

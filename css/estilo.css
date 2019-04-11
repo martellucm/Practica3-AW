@@ -1,393 +1,3 @@
-/*
-*	HOJA DE ESTILOS PRÁCTICA 2
-*/
-
-
-/*Sección del estilo para el contenedor en general----*/
-
-	/*div#contenedor {
-		height: 90px;
-		width: auto;
-		margin: 0px;
-	}
-/*Seccion del estilo para la cabecera ----------------*/
-
-	/*div#cabecera a, div#cabecera a:visited {
-		color: black;
-		font-weight: bold;
-		text-decoration: none;
-	}
-	div#cabecera a:hover {
-		color:  #b12a2a;
-		font-weight: bold;
-	}
-	div#cabecera{
-		background-color: #EEE8AA;
-		height: 120px;
-		border-color:  #b12a2a;
-		margin: 0px;
-		padding: 10px;
-		float: top;
-	}
-
-	.saludo {
-		float: right;
-	}
-	.saludo a{
-		display: inline-block;
-		width: 100px;
-		height: 40px;
-		background-color: #8FBC8F;
-		opacity: .8;
-		line-height: 40px;
-		text-align: center;
-		font-size: 17px;
-		border: 1px white outset;
-	}
-	.saludo p{
-		font-size: 12px;
-		
-	}
-/*Zona de estilo en el menuBar------------------------*/
-
-	/*.navMenu ul{
-		list-style: none;
-		margin: 0px;
-		padding-top: 36px;
-		padding-left: auto;
-		text-transform: uppercase;
-	}
-
-	.navMenu ul li{
-		float:left;
-		width: 120px;
-		height: auto;
-		background-color: #8FBC8F;
-		opacity: .8;
-		line-height: 40px;
-		text-align: center;
-		font-size: 17px;
-		border: 1px white outset;
-
-	}
-
-	.navMenu ul li a{
-		display: block;
-		color: white;
-		text-decoration: none;
-	}
-
-	.navMenu ul li a:hover{
-		background-color: #DCDCDC;
-	}
-/*index*/
-
-
-	/*div#news{
-		background-color: #8FBC8F;
-		display: flex;
-		float: left;
-		margin-top: 7%;
-		min-height: 400px;
-
-	}
-	div#news h3{
-		background-color: #5DADE2;
-		padding: 2%;
-		text-align: center;
-		color: white;
-		opacity: .8;
-		line-height: 40px;
-		text-shadow: 2px 2px black;
-	}
-
-	div#week{
-		background-color: tomato;
-		display: inline-grid;
-		margin-left: 10%;
-		margin-top: 2%;
-		padding: 1%;
-	}
-	div#week h2{
-		padding: 2%;
-		text-align: center;
-		color: white;
-		opacity: .8;
-		line-height: 40px;
-		text-shadow: 2px 2px black;
-		margin: auto;
-	}
-
-	div#week img{
-		height: 250px;
-		width: 250px;
-		margin-left: 18%;
-
-	}
-	div#month{
-		background-color: tomato;
-		display: inline-grid;
-		margin-left:15%;
-		margin-top: 2%;
-		padding: 1%;
-
-	}
-
-	div#month h2{
-		padding: 2%;
-		text-align: center;
-		color: white;
-		opacity: .8;
-		line-height: 40px;
-		text-shadow: 2px 2px black;
-		margin: auto;
-	}
-
-	div#month img{
-		height: 250px;
-		width: 250px;
-		margin-left: 5%;
-	}
-
-	div#publi{
-		height: 200px;
-		float: top;
-		margin-left: 10%;
-		display: grid;
-	}
-	.foto_publi{
-			display: block;
-			width: 784px;
-			height: 200px;
-	}
-
-	.productos{
-		margin-left: 20%;
-		margin-right: 10%;
-		display: block;
-		float: center;
-	}
-	.products{
-		background-color: #A569BD;
-		display: inline-grid;
-		margin-top: 5%;
-		margin-left: 10%;
-		position: bottom;
-		text-align: center;
-		border: 2px grey outset;
-		width: 204px;
-	}
-	.name_product {
-		background-color: #58A8CB;
-		display: grid;
-		bottom: 0;
-		
-	}
-
-	.name_product p{
-		 text-transform: uppercase;
-		 font-family: sans-serif;
-		 font-size: 120%;
-		 font-style: italic;
-
-	}
-
-	.p_product p{
-		color:#F4D03F;
-	}
-	.products img{
-		border: 2px grey outset;
-		height: 200px;
-		width: 200px;
-	}
-/*Fuentes y estilos para etiquetas universales -------*/
-
-	/*img {
-		float: left;
-		width: auto;
-		height: 100px;
-	}
-
-	h1{
-		font-weight: normal;
-		font-family:  Helvetica, Arial, sans-serif;
-		font-size: 40px;
-	}
-
-	h2{
-		font-weight: normal;
-		font-family:  Helvetica, Arial, sans-serif;
-		font-size: 35px;
-	}
-
-	h3{
-		font-weight: normal;
-		font-family:  Helvetica, Arial, sans-serif;
-		font-size: 30px;
-	}
-
-	p{
-		text-align: center;
-		font-size: 24 px;
-		font-family: "Arial", serif ;
-	}
-
-	table, th, td {
-  		border: 1px solid black;
-  		padding: 20px;
-   		margin-left:auto;
-	 	margin-right:auto;
-  		font-size: 18px;
-		font-family: "Arial", serif;
-	}
-
-/*Productos Completos*/
-
-	/*div#producto_total{
-		display: grid;
-	}
-
-	div#img_total img{
-		height: 300px;
-		width: 300px;
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 5%;
-	}
-	div#nombre_total{
-		display: block;
-		text-transform: uppercase;
-		margin-top: 5%
-	}
-	div#puntos_total{
-
-	}
-	div#desc_total{
-		
-		text-align: center;
-	}
-	div#edad_total{
-
-	}
-	div#jugadores_total{
-
-	}
-	div#link_total{
-
-	}
-	div#empresa_total{
-
-	}
-	div#reacciones{
-		background-color: #8FBC8F;
-		display: inline-flex;
-		float: right;
-		margin-top: 7%;
-		min-height: 400px;
-	}
-
-	div#reacciones input{
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	div#reacciones p{
-		background-color: #5DADE2;
-		padding: 2%;
-		text-align: center;
-		color: white;
-		opacity: .8;
-		line-height: 40px;
-		text-shadow: 2px 2px black;
-	}
-
-/*MI BOQUERON*/
-
-
-	/*div#muestraUser{
-		display: inline-grid;
-		margin-top: 5%;
-	}
-	div#img_user img{
-		height: 300px;
-		width: 300px;
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 5%;
-		display: grid;
-		float: left;
-		padding: 5%;
-	}
-
-	div#user_nick h1{
-	}
-
-	div#user_name h2{
-	}
-
-	div#user_rol h2{
-	}
-
-	div#user_emai h3{
-	}
-
-	div#user_birt h3{
-	}
-
-	div#user_desc p{
-		text-align: left;
-	}
-
-	div#user_poin p{
-		text-align: left;
-		font-size: 24 px;
-		font-family: "Arial", serif ;
-
-	}
-
-	div#admin{
-		float: right;
-		display: block;
-		margin-top: 5%;
-	}
-
-	div#admin input{
-		display: inline-grid;
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 2%;
-		float: right;
-		padding: 2%;
-	}
-	div#admin button{
-		display: inline-grid;
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 2%
-	}
-
-	div#admin a ,div#admin a:visited{
-		color: black;
-		font-weight: bold;
-		text-decoration: none;
-		display: inline-grid;
-		width: 100px;
-		height: 40px;
-		background-color: #8FBC8F;
-		opacity: .8;
-		line-height: 40px;
-		text-align: center;
-		font-size: 17px;
-		border: 1px white outset;
-	}
-
-	div#admin a:hover {
-		color:  #b12a2a;
-		font-weight: bold;
-	}*/
-	
-	
 /*/////////////////-----/CABECERA////////////////*/
 *{margin:0;
 padding:0;}
@@ -933,4 +543,98 @@ form#starRating label:hover{
   color: white;
   text-align: center;
   vertical-align: middle;
+}
+/*////////////////////HOME////////////////////////////////*/
+div#publi{
+	display: block;
+		margin-left: 300px;
+		height: 100px;
+		width: 500px;
+	}
+	.foto_publi{
+		height: 100px;
+		width: 800px;
+	}
+	div#winners{
+		margin-left: 350px;
+		margin-top: 50px;
+		width:700px;
+		height: 250px;
+		font-size: 10px;
+		font-family: sans-serif;
+		border-style: none;
+		box-shadow: 2px 2px 10px black;
+		background-image: url(1.png);
+	}
+	div#winners h2{
+		margin-bottom: 30px;
+		padding:10px;
+		background-color: #f7b733;
+		box-shadow: 2px 2px 10px black;
+		border-radius: 50px;
+		color:white;
+		text-align: center;
+		
+	}
+
+div#month{
+	float:left;
+	width: 300px;
+	height: 250px;
+	padding:10px;
+	display: block;
+	padding-left: 10px;
+}
+div#week{
+	float: right;
+	width: 300px;
+	height: 250px;
+	padding:10px;
+}
+
+div#img_userh img{
+	float:left;
+	margin-left: 20px;
+	height: 140px;
+    width: 140px;
+	margin-top: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+}
+div#user_data{
+	float: right;
+	margin-right: 10px;
+	margin-top: 50px;
+	padding: 10px;
+	font-size: 15px;
+	background-color: #f7b733;
+	border-radius: 50px;
+	color:white;
+	text-align: center;
+	box-shadow: 2px 2px 10px black;
+}
+
+div .productosind {
+	margin-left: 350px;
+		margin-top: 50px;
+		margin-bottom: 62.5px;
+		padding: 10px;
+		width:680px;
+		height: 350px;
+		font-size: 10px;
+		font-family: sans-serif;
+		border-style: none;
+		box-shadow: 2px 2px 10px black;
+		background-image: url(h2.png);
+		background-size: 700px;
+}
+div .productosind h2{
+	/*margin-bottom: -10px;*/
+		padding:10px;
+		background-color: #4abdac;
+		box-shadow: 2px 2px 10px black;
+		border-radius: 50px;
+		color:white;
+		text-align: center;
 }
