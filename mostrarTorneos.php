@@ -22,18 +22,8 @@ require_once __DIR__ .'/includes/comun/config.php';
 						<select name="filtroJ">
 						<option value="-1">vacio</option>
 						<?php
-						$app = Aplicacion::getSingleton();
-						$conn = $app->conexionBd();
-						$query = sprintf("SELECT * FROM producto");
-						$rs = $conn->query($query);
-					
-						while($row = mysqli_fetch_assoc($rs)){
-							$rows[] = $row;
-						}
-					
-						for($i = 0; $i < count($rows); $i++){
-							echo "<option value=".$rows[$i]["id"].">".$rows[$i]["nombreProd"]."</option>";
-						}
+						    require_once __DIR__.'/includes/Torneos/GestionaTorneo.php';
+               				GestionaTorneo::filtarPorDefecto();
 						?>
 					</select>
 					<input type="submit" name="buscar" value="Realizar búsqueda">
