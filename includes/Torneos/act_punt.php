@@ -1,20 +1,57 @@
-	<div id="actu_puntos">
-		<!--Dependiendo de si está o no jugando, y si se muestra-->
-		<form action="" method="POST">
+<?php
+	require_once __DIR__. '/../comun/config.php';
+	require_once __DIR__.'/GestionaTorneo.php';
+	require_once __DIR__.'/../comun/Form.php';
+	require_once __DIR__. '/Inscrito.php';
+	require_once __DIR__. '/torneo.php';
+	require_once __DIR__. '/../usuarios/Usuario.php';
+
+	class FormularioActualiza extends Form{
+
+		protected function procesaFormulario($datos){
+			return $datos;
+		}
+
+		 protected function generaCamposFormulario($datosIniciales)
+		{
+
+			/*
+			* En caso de que hubiera un error se mantienen
+			* los datos para que puedas modificarlos
+			*/
+			$nom = $_SESSION['nombre'];
+			$id = Usuario::buscaUsuario($nom);
+			$arr = Torneo::getTorneoID($id->id());
+			$html = ''; // String que genera el html
+			$html .= '<fieldset>';
+            $html .= '<legend>Actualiza puntos</legend>';
+            $html .= '	<div class="grupo-control">';
+
+				 if(!empty($arr)){
+					$html .= '<select name="idProd">';
+					foreach($arr as $row){
+						$html .= '<option value="'.$row['juego'].'">'.$row['juego'].'</option>';
+					}
+					$html .= '</select>';
+				 }
+				 else{
+					$html .= '<p>ERROR</p>';
+				 }
+			$html .= '<input type="hidden" name="idJug" value="'.$id->id().'">';
+			$html .= '<input type="hidden" name="fecha" value="'.$row['fecha'].'">';
+            $html .= '  <div class="grupo-control"><button type="submit" name="actualiza">Actualiza</button></div>';
+			$html .= '</fieldset>';
+			return $html;
+		}
+
+
+	}
+?>
+
+<div id="actu_puntos">
 			<h2>Actualiza puntuación</h2>
-			<select>
-				<!--Torneos disponibles en bucle for-->
-				<option value="juego1">Juego1</option>
-				<option value="juego2">Juego2</option>
-				<option value="juego3">Juego3</option>
-				<option value="juego4">Juego4</option>
-			</select>
-			<select>
-				<!--Torneos disponibles en bucle for-->
-				<option value="clasf1">Clasif1</option>
-				<option value="clasf2">Clasif2</option>
-				<option value="clasf3">Clasif2</option>¡
-			</select>
-			<input type="submit" name="Actualiza"> 
-		</form>
+		<?php
+			$formu = new FormularioActualiza('actualiza', array('action' => 'includes/Torneos/pasaRondas.php'));
+			$formu->gestiona();
+		?>
 	</div>
