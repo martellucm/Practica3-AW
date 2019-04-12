@@ -75,7 +75,8 @@ class ModifProducto extends Form {
 			
 
 			$html = '';
-			$html .='	<fieldset>';
+			$html .='	<fieldset class="formulario">';
+			$html .= '<legend>Modificar producto</legend>';
 			$html .='	<div class="grupo-control">';
 			$html .='		<label>Nombre del producto:</label> <input class="control" type="text" name="_nombreProducto" value="'.$producto->nombreProd() .'" required />';
 			$html .='	</div>';
@@ -104,7 +105,6 @@ class ModifProducto extends Form {
 ?>
 
 <div id="contenido">
-	<h1>Modificar producto</h1>
 <?php
 		$formu = new ModifProducto('modificarprod', array('action' => NULL));
 		$formu->gestiona();

@@ -83,7 +83,8 @@ class RegistroProducto extends Form {
 			}
 
 			$html = '';
-			$html .='	<fieldset>';
+			$html .='	<fieldset class="formulario">';
+			$html .= '<legend>Modificar producto</legend>';
 			$html .='	<div class="grupo-control">';
 			$html .='		<label>Nombre del producto:</label> <input class="control" type="text" name="_nombreProducto" value="'.$nombrProd .'" required />';
 			$html .='	</div>';
@@ -118,7 +119,6 @@ class RegistroProducto extends Form {
 ?>
 
 <div id="contenido">
-	<h1>Registro de producto</h1>
 <?php
 		$formu = new RegistroProducto('registro', array('action' => NULL));
 		$formu->gestiona();
