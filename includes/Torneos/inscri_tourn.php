@@ -5,6 +5,7 @@
 	require_once __DIR__. '/Inscrito.php';
 	require_once __DIR__. '/torneo.php';
 	require_once __DIR__. '/../usuarios/Usuario.php';
+	require_once __DIR__. '/../productos/Producto.php';
 
 	class FormularioInscrip extends Form{
 
@@ -63,8 +64,9 @@
 				 if(!empty($arr)){
 					$html .= '<select name="juego">';
 					foreach($arr as $row){
-						$val = Torneo::buscarTorneoIdJuego($row);
-						$html .= '<option value="'.$val.'">'.$row.'</option>';
+						$val = Torneo::buscarTorneoIdJuego($row['id']);
+						$jug = Product::buscaProduco($row['juego']);
+						$html .= '<option value="'.$val.'">'.$jug->nombreProd().' - '.$row['fecha'].'</option>';
 					}
 					$html .= '</select>';
 				 }

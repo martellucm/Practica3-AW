@@ -119,6 +119,28 @@
 
 		}
 
+		public static function getRandoms($id){
+
+			 $app = Aplicacion::getSingleton();
+	        $conn = $app->conexionBd();
+	        $query = sprintf("SELECT * FROM torneos_disp T WHERE T.id = '%s'"
+	        		, $conn->real_escape_string($id));
+	        $rs = $conn->query($query);
+	        $result = false;
+	        if ($rs) {
+	            if ( $rs->num_rows == 1) {
+	                $fila = $rs->fetch_assoc();
+	                $result = array('id' => $fila['id'], 'juego' => $fila['idJuego'], 'fecha' => $fila['fecha']);
+	            }
+	            $rs->free();
+	        } else {
+	            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+	            exit();
+	        }
+	        return $result;
+
+		}
+
 		private static function getTJug($idJu, $fecha){
 			    $app = Aplicacion::getSingleton();
 	        $conn = $app->conexionBd();
@@ -183,7 +205,7 @@
 				$intMax = Torneo::getLastID();
 				if($intMax >= 1){
 					$id = rand(1, $intMax);
-					$prod = Inscrito::buscaInscritoID($id);
+					$prod = Inscrito::getRandoms($id);
 					if(!$prod){
 						$prod = self::generaRandom();
 					}
