@@ -547,7 +547,7 @@ form#starRating label:hover{
 /*////////////////////HOME////////////////////////////////*/
 div#publi{
 	display: block;
-		margin-left: 300px;
+		margin-left: 32%;
 		height: 100px;
 		width: 500px;
 	}
@@ -556,7 +556,7 @@ div#publi{
 		width: 800px;
 	}
 	div#winners{
-		margin-left: 350px;
+		margin-left: 35%;
 		margin-top: 50px;
 		width:700px;
 		height: 250px;
@@ -616,7 +616,7 @@ div#user_data{
 }
 
 div .productosind {
-	margin-left: 350px;
+	margin-left: 35%;
 		margin-top: 50px;
 		margin-bottom: 62.5px;
 		padding: 10px;
