@@ -23,7 +23,7 @@
         else if($juego !== ""){
           $query = sprintf("SELECT `idUsuario` as id FROM torneo WHERE idJuego = '%s' ORDER BY `Puntuacion`DESC LIMIT 3", $conn->real_escape_string($juego));
         }
-     
+
          $rs = $conn->query($query);
          $result = false;
          if ($rs) {
@@ -63,61 +63,61 @@
             echo '<div class ="products"><div class="img_user"><img src='.$directorio.'></div>';
         }
          echo '<div class ="name_winners"> <p>'.$user->nombreUsuario().'</p></div>';
-       
-         echo  '<div class ="points_winner"><p>'.$user->ptosTourn().'</p></div>';  
+
+         echo  '<div class ="points_winner"><p>'.$user->ptosTourn().'</p></div>';
          echo '</div>';
     }
 
-    public static function getResults($n){    
-        $juego = $_POST['filtroJ'];
-        $fecha = $_POST['filtroF'];	
-    	  if ($n !== 3){
-    	  	$ganador = GestionaTorneo::getTopPlayers($juego, $fecha);
-         		 echo '<table class ="name_table">';
-        		 echo '<tr> 
-         			<th>Nombre</th>
-   					<th>Torneo Ganado</th>
-            <th>Fecha</th>
-   					</tr>';
-         }
-         else{
-         	$ganador = self::getPodiumPlayers($juego, $fecha);
-         }
-         $i = 0;
-         if(is_array($ganador)){
-          foreach ($ganador as &$row) {
-          	if ($n === 3){
-            	self::mostrarPodium($row);
-        	}
-        	else{
-        	   	self::mostrarTabla($row);
-        	}
-            $i++;
-            if ($i >= $n){
-              break;
-            }
+		public static function getResults($n){
+         $juego = $_POST['filtroJ'];
+         $fecha = $_POST['filtroF'];
+     	  if ($n !== 3){
+     	  	$ganador = GestionaTorneo::getTopPlayers($juego, $fecha);
+          		 echo '<table id="qualifyingTable" class ="name_table">';
+         		 echo '<tr>
+          			<th>Nombre</th>
+    					<th>Torneo Ganado</th>
+ 					<th>Fecha</th>
+    					</tr>';
           }
-          if ($n !== 3){
-          	echo '</table>';
+          else{
+          	$ganador = self::getPodiumPlayers($juego, $fecha);
           }
-           unset($row);
-         }
-    }// Ponerle 3 en n para que saque a los mejores y otro para la tabla
+          $i = 0;
+          if(is_array($ganador)){
+           foreach ($ganador as &$row) {
+           	if ($n === 3){
+             	self::mostrarPodium($row);
+         	}
+         	else{
+         	   	self::mostrarTabla($row);
+         	}
+             $i++;
+             if ($i >= $n){
+               break;
+             }
+           }
+           if ($n !== 3){
+           	echo '</table>';
+           }
+            unset($row);
+          }
+     }// Ponerle 3 en n para que saque a los mejores y otro para la tabla
 
-     public static function mostrarTabla($row){
-    	$id = $row['idUsuario'];
-    	$idJuego = $row['idJuego'];
-    	$user = Usuario::buscaUsuarioID($id);
-    	$prod = Product::buscaProduco($idJuego);
+      public static function mostrarTabla($row){
+     	$id = $row['idUsuario'];
+     	$idJuego = $row['idJuego'];
+     	$user = Usuario::buscaUsuarioID($id);
+     	$prod = Product::buscaProduco($idJuego);
 
-   		 echo '<tr> 
-         		<th>'.$user->nombreUsuario().'</th>
-   				<th>'.$prod->nombreProd().'</th>
-          <th>'.$row['dia_ganado'].'</th>
-   				</tr>';
+    		 echo '<tr>
+          		<td>'.$user->nombreUsuario().'</td>
+    				<td>'.$prod->nombreProd().'</td>
+           <td>'.$row['dia_ganado'].'</td>
+    				</tr>';
 
-         //echo '</table>';
-    }
-    
+          //echo '</table>';
+     }
+
 }
 ?>

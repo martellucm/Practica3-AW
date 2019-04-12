@@ -13,10 +13,14 @@ require_once __DIR__.'/includes/comun/config.php';
   	   <?php require'includes/comun/cabecera.php'?>
   	<div id = "contenido">
   	<h1>Torneos</h1>
+	<br>
 	<div id="bttn_tour">
-		<a href="mostrarTorneos.php"><button >Ver Torneo</button></a>
-		<a href="mostrarResults.php"><button >Resultados</button></a>
+		<div  class="addnoticia">
+			<a href="mostrarTorneos.php">Ver Torneo</a>
+			<a href="mostrarResults.php">Resultados</a>
+		</div>
 	</div>
+	<br>
 	<?php
 	 if(isset($_SESSION['login'])){
 		 require 'includes/Torneos/viernesSel.php';

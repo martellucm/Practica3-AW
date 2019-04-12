@@ -57,8 +57,8 @@
 
 			$arr = GestionaTorneo::getTorneos();
 			$html = ''; // String que genera el html
-			$html .= '<fieldset>';
-            $html .= '<legend>Inscribirse</legend>';
+			$html .= '<fieldset class = "formulario">';
+            $html .= '<legend>Inscribirse a un torneo</legend>';
             $html .= '	<div class="grupo-control">';
 
 				 if(!empty($arr)){
@@ -83,7 +83,6 @@
 ?>
 
 	<div id="inscri_tour">
-		<h2>Inscribirse a un torneo</h2>
 
 		<?php
 			$formu = new FormularioInscrip('inscri', array('action' => NULL));
